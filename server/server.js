@@ -8,6 +8,7 @@ var fs = require('fs');			// Accès au système de fichier
 
 // Chargement des modules perso
 var daffy = require('./modules/daffy.js');
+var infosClasse = require('./modules/infosClasse.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -28,6 +29,7 @@ app.use(express.static(path.resolve(__dirname + '/../client/assets')));
 // Gestion des connexions au socket
 io.sockets.on('connection', function(socket)
 {
+	
 	// Arrivée d'un utilisateur
 	socket.on('user_enter', function(name)
 	{
@@ -46,6 +48,9 @@ io.sockets.on('connection', function(socket)
 		
 		// Transmet le message au module Daffy (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		daffy.handleDaffy(io, message);
+		
+		// Récupère les infos de l'élève
+		infosClasse.getInfosClasse(io, message);
 	});
 });
 
