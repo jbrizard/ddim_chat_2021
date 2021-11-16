@@ -1,5 +1,5 @@
 ﻿/*
- * Nom : Youtube
+ * Nom : YoutubeMini
  * Description : Ce putain de module de la mort integre une video youtube
  * Auteur(s) : Interlosers (Olivier & Yanis)
  */
@@ -7,13 +7,13 @@
 // Définit les méthodes "publiques" (utilisation à l'extérieur du module)
 module.exports = 
 {
-	handleYoutube: handleYoutube // permet d'appeler cette méthode dans server.js -> youtube.handleYoutube(...)
+	handleYoutubeMini: handleYoutubeMini // permet d'appeler cette méthode dans server.js -> youtube.handleYoutube(...)
 }
 
 /**
  * Lorsqu'on appelle youtube, il renvoie la video demandee...
  */
-function handleYoutube(io, message)
+function handleYoutubeMini(io, message)
 {
 	// Passe le message en minuscules (recherche insensible à la casse)
 	messageMinified = message.toLowerCase();
@@ -26,8 +26,8 @@ function handleYoutube(io, message)
 		// Si oui, envoie la réponse de Daffy...
 		io.sockets.emit('new_message',
 		{
-			name:'Youtube',
-			message:'<iframe width="560" height="315" src="https://www.youtube.com/embed/' + youtubeCode + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+			name:'YoutubeMini',
+			message:'<iframe width="450" height="255" src="https://www.youtube.com/embed/' + youtubeCode + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
 		});
 	}
 }
