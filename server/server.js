@@ -1,4 +1,4 @@
-﻿// Chargement des dépendances
+// Chargement des dépendances
 var express = require('express');	// Framework Express
 var http = require('http');		// Serveur HTTP
 var ioLib = require('socket.io');	// WebSocket

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Nom : Daffy !
  * Description : Ce module ne fait pas grand chose... quand on appelle Daffy, il répond !
  * Auteur(s) : Jérémie Brizard

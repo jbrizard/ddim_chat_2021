@@ -7,7 +7,7 @@
             "age": 20,
             "birthday": "24/09/2001",
             "place": "Dijon",
-            "lastestStudy": "DUT MMI",
+            "latestStudies": "DUT MMI",
             "email": "anthony.belin@gmail.com",
             "phone": "0674859362"
         },
@@ -18,7 +18,7 @@
             "age": 22,
             "birthday": "24/05/1999",
             "place": "Le Creusot",
-            "lastestStudy": "DUT MMI",
+            "latestStudies": "DUT MMI",
             "email": "yanis.belkadi@gmail.com",
             "phone": "06991556248"
         },
@@ -29,7 +29,7 @@
             "age": 20,
             "birthday": "10/01/2001",
             "place": "Chenôve",
-            "lastestStudy": "DUT MMI",
+            "latestStudies": "DUT MMI",
             "email": "donovan.cartier@gmail.com",
             "phone": "0758365497"
         },
@@ -40,7 +40,7 @@
             "age": 20,
             "birthday": "01/04/2001",
             "place": "Nouméa",
-            "lastestStudy": "DUT MMI",
+            "latestStudies": "DUT MMI",
             "email": "samantha.caune@gmail.com",
             "phone": "0758528855"
         },
@@ -51,7 +51,7 @@
             "age": 19,
             "birthday": "06/12/2001",
             "place": "Chalon-sur-Sâone",
-            "lastestStudy": "DUT MMI",
+            "latestStudies": "DUT MMI",
             "email": "nathan.coto@gmail.com",
             "phone": "0667853308"
         },
@@ -62,7 +62,7 @@
             "age": 21,
             "birthday": "23/11/2000",
             "place": "Dijon",
-            "lastestStudy": "DUT MMI",
+            "latestStudies": "DUT MMI",
             "email": "emilien.couland@gmail.com",
             "phone": "0750385608"
         },
@@ -73,7 +73,7 @@
             "age": 28,
             "birthday": "07/06/1993",
             "place": "Dijon",
-            "lastestStudy": "DUT MMI",
+            "latestStudies": "DUT MMI",
             "email": "olivier.ferriot@gmail.com",
             "phone": "0722105624"
         },
@@ -84,7 +84,7 @@
             "age": 21,
             "birthday": "17/01/2000",
             "place": "Dijon",
-            "lastestStudy": "DUT MMI",
+            "latestStudies": "DUT MMI",
             "email": "mathias.genelot@gmail.com",
             "phone": "0666938204"
         },
@@ -95,7 +95,7 @@
             "age": 21,
             "birthday": "24/05/2000",
             "place": "Dijon",
-            "lastestStudy": "DUT MMI",
+            "latestStudies": "DUT MMI",
             "email": "anthony.landeau@gmail.com",
             "phone": "0611383652"
         },
@@ -106,7 +106,7 @@
             "age": 20,
             "birthday": "23/10/2001",
             "place": "Vichy",
-            "lastestStudy": "DUT MMI",
+            "latestStudies": "DUT MMI",
             "email": "romain.larivaud@gmail.com",
             "phone": "0764354372"
         },
@@ -117,7 +117,7 @@
             "age": 19,
             "birthday": "14/01/2002",
             "place": "Dijon",
-            "lastestStudy": "DUT MMI",
+            "latestStudies": "DUT MMI",
             "email": "jules.magnien@gmail.com",
             "phone": "0654097685"
         },
@@ -128,7 +128,7 @@
             "age": 20,
             "birthday": "14/03/2001",
             "place": "Mâcon",
-            "lastestStudy": "DUT MMI",
+            "latestStudies": "DUT MMI",
             "email": "melaine.marrocq@gmail.com",
             "phone": "0777973253"
         },
@@ -139,7 +139,7 @@
             "age": 20,
             "birthday": "29/10/2001",
             "place": "Mâcon",
-            "lastestStudy": "BTS SIO",
+            "latestStudies": "BTS SIO",
             "email": "lucas.michon@gmail.com",
             "phone": "0683773253"
         },
@@ -150,7 +150,7 @@
             "age": 19,
             "birthday": "12/09/2002",
             "place": "Dijon",
-            "lastestStudy": "DUT MMI",
+            "latestStudies": "DUT MMI",
             "email": "mateo.nossereau@gmail.com",
             "phone": "0629018373"
         },
@@ -161,7 +161,7 @@
             "age": 20,
             "birthday": "28/06/2001",
             "place": "Lyon",
-            "lastestStudy": "BTS SIO",
+            "latestStudies": "BTS SIO",
             "email": "antoine.rigot@gmail.com",
             "phone": "0768768657"
         },
@@ -172,7 +172,7 @@
             "age": 21,
             "birthday": "22/02/2000",
             "place": "Dijon",
-            "lastestStudy": "DUT MMI",
+            "latestStudies": "DUT MMI",
             "email": "johann.roulot@gmail.com",
             "phone": "0684978042"
         }

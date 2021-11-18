@@ -1,4 +1,4 @@
-﻿// Connexion au socket
+// Connexion au socket
 var socket = io.connect('http://localhost:8080');
 
 // Demande un pseudo et envoie l'info au serveur
