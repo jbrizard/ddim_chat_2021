@@ -1,4 +1,4 @@
-﻿// Chargement des dépendances
+// Chargement des dépendances
 var express = require('express');	// Framework Express
 var http = require('http');		// Serveur HTTP
 var ioLib = require('socket.io');	// WebSocket
@@ -10,6 +10,10 @@ var fs = require('fs');			// Accès au système de fichier
 var daffy = require('./modules/daffy.js');
 var youtubeMini = require('./modules/youtubeMini.js');
 var youtube = require('./modules/youtube.js');
+var wizz = require('./modules/wizz.js');
+var infosClasse = require('./modules/infosClasse.js');
+var messagesHistory = require('./modules/messagesHistory.js');
+var basket = require('./modules/basket.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -27,9 +31,18 @@ app.get('/', function(req, res)
 // Traitement des fichiers "statiques" situés dans le dossier <assets> qui contient css, js, images...
 app.use(express.static(path.resolve(__dirname + '/../client/assets')));
 
+// Initialisation du module Basket
+basket.init(io);
+
 // Gestion des connexions au socket
 io.sockets.on('connection', function(socket)
 {
+	// Ajoute le client au jeu de basket
+	basket.addClient(socket);
+	
+	// Récupère les anciens messages de l'utilisateur
+	messagesHistory.getMessagesHistory(socket, fs);
+	
 	// Arrivée d'un utilisateur
 	socket.on('user_enter', function(name)
 	{
@@ -52,6 +65,12 @@ io.sockets.on('connection', function(socket)
 		// Transmet le message au module YoutubeMini (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		youtubeMini.handleYoutubeMini(io, message);
 		youtube.handleYoutube(io, message);
+		
+		// Récupère les infos de l'élève
+		infosClasse.getStudentsInformations(io, message);
+
+		// Récupère les anciens messages de l'utilisateur
+		messagesHistory.addMessageToHistory(socket, fs, message);
 	});
 	
 	// Réception d'un ytChoice
@@ -61,6 +80,15 @@ io.sockets.on('connection', function(socket)
 		let iframeYT = '<iframe width="450" height="255" src="https://www.youtube.com/embed/' + message + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
 		io.sockets.emit('new_message', {name:socket.name, message:iframeYT});
 	});
+
+	// Réception du code Konami.
+	socket.on("konami", function()
+	{
+		io.sockets.emit('all_konami');
+	});
+
+	// Gestion du wizz
+	wizz.handleWizz(io, socket);
 });
 
 // Lance le serveur sur le port 8080 (http://localhost:8080)
