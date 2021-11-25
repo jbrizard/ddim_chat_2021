@@ -1,4 +1,4 @@
-﻿// Chargement des dépendances
+// Chargement des dépendances
 var express = require('express');	// Framework Express
 var http = require('http');		// Serveur HTTP
 var ioLib = require('socket.io');	// WebSocket
@@ -11,6 +11,8 @@ var daffy = require('./modules/daffy.js');
 var youtubeMini = require('./modules/youtubeMini.js');
 var youtube = require('./modules/youtube.js');
 var wizz = require('./modules/wizz.js');
+var infosClasse = require('./modules/infosClasse.js');
+var messagesHistory = require('./modules/messagesHistory.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -31,6 +33,9 @@ app.use(express.static(path.resolve(__dirname + '/../client/assets')));
 // Gestion des connexions au socket
 io.sockets.on('connection', function(socket)
 {
+	// Récupère les anciens messages de l'utilisateur
+	messagesHistory.getMessagesHistory(socket, fs);
+	
 	// Arrivée d'un utilisateur
 	socket.on('user_enter', function(name)
 	{
@@ -53,6 +58,12 @@ io.sockets.on('connection', function(socket)
 		// Transmet le message au module YoutubeMini (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		youtubeMini.handleYoutubeMini(io, message);
 		youtube.handleYoutube(io, message);
+		
+		// Récupère les infos de l'élève
+		infosClasse.getStudentsInformations(io, message);
+
+		// Récupère les anciens messages de l'utilisateur
+		messagesHistory.addMessageToHistory(socket, fs, message);
 	});
 	
 	// Réception d'un ytChoice
