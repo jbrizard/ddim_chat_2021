@@ -1,4 +1,5 @@
-﻿// Connexion au socket
+﻿
+// Connexion au socket
 var socket = io.connect('http://localhost:8080');
 
 // Demande un pseudo et envoie l'info au serveur
@@ -18,6 +19,7 @@ $('#message-input').keyup(function(evt)
 		sendMessage();
 });
 
+
 /**
  * Envoi d'un message au serveur
  */
@@ -25,9 +27,12 @@ function sendMessage()
 {
 	// Récupère le message, puis vide le champ texte
 	var input = $('#message-input');
-	var message = input.val();	
+	var message = input.val();
 	input.val('');
-	
+
+	//Vide le champ de texte après avoir ajouté un emoji
+	emojisPicker[0].emojioneArea.setText('');
+
 	// On n'envoie pas un message vide
 	if (message == '')
 		return;
@@ -36,16 +41,20 @@ function sendMessage()
 	socket.emit('message', message);
 }
 
+
 /**
  * Affichage d'un message reçu par le serveur
  */
 function receiveMessage(data)
 {
+	data.message = replaceEmoji(data.message);
+
 	$('#chat #messages').append(
 		'<div class="message">'
 			+ '<span class="user">' + data.name  + '</span> ' 
 			+ data.message 
 	     + '</div>'
 	)
-	.scrollTop(function(){ return this.scrollHeight });  // scrolle en bas du conteneur
+	// Scrolle en bas du conteneur
+	.scrollTop(function(){ return this.scrollHeight });  
 }
