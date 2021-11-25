@@ -10,6 +10,7 @@ var fs = require('fs');			// Accès au système de fichier
 var daffy = require('./modules/daffy.js');
 var youtubeMini = require('./modules/youtubeMini.js');
 var youtube = require('./modules/youtube.js');
+var wizz = require('./modules/wizz.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -67,6 +68,9 @@ io.sockets.on('connection', function(socket)
 	{
 		io.sockets.emit('all_konami');
 	});
+
+	// Gestion du wizz
+	wizz.handleWizz(io, socket);
 });
 
 // Lance le serveur sur le port 8080 (http://localhost:8080)

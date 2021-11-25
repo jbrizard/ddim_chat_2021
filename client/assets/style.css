@@ -25,6 +25,7 @@ h1 {
 	border-radius:14px;
 	font-size:0;
 	box-shadow:0px 0px 20px 0 rgba(0, 0, 0, 0.3);
+	position: relative;
 }
 #messages {
 	height:calc(100% - 15px - 60px); /* 15px = padding-top, 60px = formulaire en dessous  */
@@ -90,6 +91,16 @@ h1 {
 #messages .message .user:after {
 	content:': ';
 }
+
 body>h1:hover {
 	cursor: pointer;
+}
+
+#tools{
+	position: absolute;
+	padding: 10px 30px;
+	background:#fff;
+	right: -150px;
+	top: 0;
+	border-radius: 5px;
 }
