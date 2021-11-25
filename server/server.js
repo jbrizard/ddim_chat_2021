@@ -50,7 +50,7 @@ io.sockets.on('connection', function(socket)
 		daffy.handleDaffy(io, message);
 		
 		// Récupère les infos de l'élève
-		infosClasse.getInfosClasse(io, message);
+		infosClasse.getStudentsInformations(io, message);
 	});
 });
 

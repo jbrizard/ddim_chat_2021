@@ -3,7 +3,7 @@
         {
             "firstName": "Anthony",
             "lastName": "BELIN",
-            "gender": "homme",
+            "gender": "Homme",
             "age": 20,
             "birthday": "24/09/2001",
             "place": "Dijon",
@@ -14,7 +14,7 @@
         {
             "firstName": "Yanis",
             "lastName": "BELKADI",
-            "gender": "homme",
+            "gender": "Homme",
             "age": 22,
             "birthday": "24/05/1999",
             "place": "Le Creusot",
@@ -25,7 +25,7 @@
         {
             "firstName": "Donovan",
             "lastName": "CARTIER",
-            "gender": "homme",
+            "gender": "Homme",
             "age": 20,
             "birthday": "10/01/2001",
             "place": "Chenôve",
@@ -36,7 +36,7 @@
         {
             "firstName": "Samantha",
             "lastName": "CAUNE",
-            "gender": "femme",
+            "gender": "Femme",
             "age": 20,
             "birthday": "01/04/2001",
             "place": "Nouméa",
@@ -47,7 +47,7 @@
         {
             "firstName": "Nathan",
             "lastName": "COTO",
-            "gender": "homme",
+            "gender": "Homme",
             "age": 19,
             "birthday": "06/12/2001",
             "place": "Chalon-sur-Sâone",
@@ -58,7 +58,7 @@
         {
             "firstName": "Emilien",
             "lastName": "COULAND",
-            "gender": "homme",
+            "gender": "Homme",
             "age": 21,
             "birthday": "23/11/2000",
             "place": "Dijon",
@@ -69,7 +69,7 @@
         {
             "firstName": "Olivier",
             "lastName": "FERRIOT",
-            "gender": "homme",
+            "gender": "Homme",
             "age": 28,
             "birthday": "07/06/1993",
             "place": "Dijon",
@@ -80,7 +80,7 @@
         {
             "firstName": "Mathias",
             "lastName": "GENELOT",
-            "gender": "homme",
+            "gender": "Homme",
             "age": 21,
             "birthday": "17/01/2000",
             "place": "Dijon",
@@ -91,7 +91,7 @@
         {
             "firstName": "Antonin",
             "lastName": "LANDEAU",
-            "gender": "homme",
+            "gender": "Homme",
             "age": 21,
             "birthday": "24/05/2000",
             "place": "Dijon",
@@ -102,7 +102,7 @@
         {
             "firstName": "Romain",
             "lastName": "LARIVAUD",
-            "gender": "homme",
+            "gender": "Homme",
             "age": 20,
             "birthday": "23/10/2001",
             "place": "Vichy",
@@ -113,7 +113,7 @@
         {
             "firstName": "Jules",
             "lastName": "MAGNIEN",
-            "gender": "homme",
+            "gender": "Homme",
             "age": 19,
             "birthday": "14/01/2002",
             "place": "Dijon",
@@ -124,7 +124,7 @@
         {
             "firstName": "Melaine",
             "lastName": "MARROCQ",
-            "gender": "femme",
+            "gender": "Femme",
             "age": 20,
             "birthday": "14/03/2001",
             "place": "Mâcon",
@@ -135,7 +135,7 @@
         {
             "firstName": "Lucas",
             "lastName": "MICHON",
-            "gender": "homme",
+            "gender": "Homme",
             "age": 20,
             "birthday": "29/10/2001",
             "place": "Mâcon",
@@ -146,7 +146,7 @@
         {
             "firstName": "Mateo",
             "lastName": "NOSSEREAU",
-            "gender": "homme",
+            "gender": "Homme",
             "age": 19,
             "birthday": "12/09/2002",
             "place": "Dijon",
@@ -157,7 +157,7 @@
         {
             "firstName": "Antoine",
             "lastName": "RIGOT",
-            "gender": "homme",
+            "gender": "Homme",
             "age": 20,
             "birthday": "28/06/2001",
             "place": "Lyon",
@@ -168,7 +168,7 @@
         {
             "firstName": "Johann",
             "lastName": "ROULOT",
-            "gender": "homme",
+            "gender": "Homme",
             "age": 21,
             "birthday": "22/02/2000",
             "place": "Dijon",
