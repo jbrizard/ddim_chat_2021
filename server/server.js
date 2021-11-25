@@ -47,6 +47,12 @@ io.sockets.on('connection', function(socket)
 		// Transmet le message au module Daffy (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		daffy.handleDaffy(io, message);
 	});
+
+	// Réception du code Konami.
+	socket.on("konami", function()
+	{
+		io.sockets.emit('all_konami');
+	});
 });
 
 // Lance le serveur sur le port 8080 (http://localhost:8080)
