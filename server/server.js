@@ -9,6 +9,7 @@ var fs = require('fs');			// Accès au système de fichier
 // Chargement des modules perso
 var daffy = require('./modules/daffy.js');
 var infosClasse = require('./modules/infosClasse.js');
+var messagesHistory = require('./modules/messagesHistory.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -29,6 +30,8 @@ app.use(express.static(path.resolve(__dirname + '/../client/assets')));
 // Gestion des connexions au socket
 io.sockets.on('connection', function(socket)
 {
+	// Récupère les anciens messages de l'utilisateur
+	messagesHistory.getMessagesHistory(socket, fs);
 	
 	// Arrivée d'un utilisateur
 	socket.on('user_enter', function(name)
@@ -51,6 +54,9 @@ io.sockets.on('connection', function(socket)
 		
 		// Récupère les infos de l'élève
 		infosClasse.getStudentsInformations(io, message);
+
+		// Récupère les anciens messages de l'utilisateur
+		messagesHistory.addMessageToHistory(socket, fs, message);
 	});
 });
 
