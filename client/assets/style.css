@@ -90,3 +90,6 @@ h1 {
 #messages .message .user:after {
 	content:': ';
 }
+body>h1:hover {
+	cursor: pointer;
+}
