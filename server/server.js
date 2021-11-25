@@ -13,6 +13,7 @@ var youtube = require('./modules/youtube.js');
 var wizz = require('./modules/wizz.js');
 var infosClasse = require('./modules/infosClasse.js');
 var messagesHistory = require('./modules/messagesHistory.js');
+var basket = require('./modules/basket.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -30,9 +31,15 @@ app.get('/', function(req, res)
 // Traitement des fichiers "statiques" situés dans le dossier <assets> qui contient css, js, images...
 app.use(express.static(path.resolve(__dirname + '/../client/assets')));
 
+// Initialisation du module Basket
+basket.init(io);
+
 // Gestion des connexions au socket
 io.sockets.on('connection', function(socket)
 {
+	// Ajoute le client au jeu de basket
+	basket.addClient(socket);
+	
 	// Récupère les anciens messages de l'utilisateur
 	messagesHistory.getMessagesHistory(socket, fs);
 	

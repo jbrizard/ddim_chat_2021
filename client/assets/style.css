@@ -104,3 +104,25 @@ body>h1:hover {
 	top: 0;
 	border-radius: 5px;
 }
+
+#features {
+	position: absolute;
+    top: 50%;
+	transform:translateY(-50%);
+    right: 20px;
+    background: #fff;
+    border-radius: 8px;
+    font-size: 10px;
+    width: 220px;
+	text-align:left;
+	padding:15px;
+}
+#features ul {
+	margin:0;
+	padding:0;
+	list-style-position:inside;
+	list-style:none;
+}
+#features ul li {
+	margin-bottom:5px;
+}

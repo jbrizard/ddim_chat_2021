@@ -10,10 +10,28 @@
 		<link rel="stylesheet" href="style.css" />
 		<link rel="stylesheet" href="/modules/daffy/daffy.css" />
 		<link rel="stylesheet" href="/modules/wizz/wizz.css" />
+		<link rel="stylesheet" href="/modules/basket/basket.css" />
 	</head>
 	
 	<body>
 		<h1>Le Chat !</h1>
+		
+		<!-- module basket -->
+		<div id="basket">
+			<div id="others-mouse-pos"></div>
+		
+			<div class="ball"></div>
+			
+			<div id="basket-scores">
+				<div id="current-player"></div>
+				<div id="stats">
+					<strong>Meilleur joueur : <span class="best-player">???</span></strong>
+				</div>
+			</div>
+
+			<audio id="basket-bounce" src="modules/basket/bounce.mp3" autostart="0" />
+		</div>
+		<!-- fin module basket -->
 		
 		<div id="chat">
 			
@@ -27,8 +45,23 @@
 			
 		</div>
 		
+		<div id="features">
+			<h2>Plugins</h2>
+			<ul>
+				<li><strong>Emojis :</strong> exprime tes sentiments, déclare ta flamme...</li>
+				<li><strong>Youtube :</strong> partage tes vidéos préférées avec "!yt MOTCLE"</li>
+				<li><strong>Konami :</strong> met l'ambiance avec le konami code</li>
+				<li><strong>Wizz :</strong> réveille tes potes !</li>
+				<li><strong>Annuaire :</strong> vole des données personnelles en tapant "/infos ..."</li>
+				<li><strong>Annuaire :</strong> vole des données personnelles en tapant "/infos ..."</li>
+				<li><strong>Historique : souviens toi du bon vieux temps en remontant dans l'historique</strong> </li>
+				<li><strong>Basket :</strong> bat le record de touche sans que le ballon touche le sol</li>
+			</ul>
+		</div>
+		
 		<script type="text/javascript" src="chat.js"></script>
 		<script type="text/javascript" src="/modules/youtube/youtube.js"></script>
 		<script type="text/javascript" src="/modules/konami/konami.js"></script>
+		<script type="text/javascript" src="modules/basket/basket.js"></script>
 	</body>
 </html>
