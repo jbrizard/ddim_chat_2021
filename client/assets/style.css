@@ -126,3 +126,10 @@ body>h1:hover {
 #features ul li {
 	margin-bottom:5px;
 }
+
+.message {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}

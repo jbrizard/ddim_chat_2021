@@ -10,10 +10,11 @@
 		<script src="/modules/emojis-picker/lib/emojionearea.js"></script>
 		
 		<link rel="stylesheet" href="style.css" />
-	<link rel="stylesheet" href="/modules/emojis-picker/lib/emojionearea.min.css" />
+		<link rel="stylesheet" href="/modules/emojis-picker/lib/emojionearea.min.css" />
 		<link rel="stylesheet" href="/modules/daffy/daffy.css" />
 		<link rel="stylesheet" href="/modules/wizz/wizz.css" />
 		<link rel="stylesheet" href="/modules/basket/basket.css" />
+		<link rel="stylesheet" href="/modules/like/like.css" />
 	</head>
 	
 	<body>
@@ -24,29 +25,32 @@
 			<div id="others-mouse-pos"></div>
 		
 			<div class="ball"></div>
-			
-			<div id="basket-scores">
-				<div id="current-player"></div>
-				<div id="stats">
-					<strong>Meilleur joueur : <span class="best-player">???</span></strong>
-				</div>
-			</div>
-
-			<audio id="basket-bounce" src="modules/basket/bounce.mp3" autostart="0" />
 		</div>
 		<!-- fin module basket -->
 		
 		<div id="chat">
-			
+		
 			<div id="tools">
 				<input type="button" id="send-wizz"/>
 			</div>
 			
-			<div id="messages"></div>
-			<input type="text" id="message-input" />
+			<div id="messages">
+				
+			</div>
+				
+			<input autofocus type="text" id="message-input" />
 			<input type="button" id="send-message" value="Envoyer" />
 			
 		</div>
+		
+		<div id="basket-scores">
+			<div id="current-player"></div>
+			<div id="stats">
+				<strong>Meilleur joueur : <span class="best-player">???</span></strong>
+			</div>
+		</div>
+
+		<audio id="basket-bounce" src="modules/basket/bounce.mp3" autostart="0" />
 		
 		<div id="features">
 			<h2>Plugins</h2>
