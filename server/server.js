@@ -14,6 +14,7 @@ var wizz = require('./modules/wizz.js');
 var infosClasse = require('./modules/infosClasse.js');
 var messagesHistory = require('./modules/messagesHistory.js');
 var basket = require('./modules/basket.js');
+var takover = require('./modules/takover.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -65,6 +66,7 @@ io.sockets.on('connection', function(socket)
 		// Transmet le message au module YoutubeMini (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		youtubeMini.handleYoutubeMini(io, message);
 		youtube.handleYoutube(io, message);
+		takover.handleTakover(io, message);
 		
 		// Récupère les infos de l'élève
 		infosClasse.getStudentsInformations(io, message);
