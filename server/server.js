@@ -61,6 +61,12 @@ io.sockets.on('connection', function(socket)
 		let iframeYT = '<iframe width="450" height="255" src="https://www.youtube.com/embed/' + message + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
 		io.sockets.emit('new_message', {name:socket.name, message:iframeYT});
 	});
+
+	// Réception du code Konami.
+	socket.on("konami", function()
+	{
+		io.sockets.emit('all_konami');
+	});
 });
 
 // Lance le serveur sur le port 8080 (http://localhost:8080)
