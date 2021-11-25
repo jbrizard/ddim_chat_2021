@@ -8,6 +8,7 @@ var fs = require('fs');			// Accès au système de fichier
 
 // Chargement des modules perso
 var daffy = require('./modules/daffy.js');
+var wizz = require('./modules/wizz.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -47,6 +48,9 @@ io.sockets.on('connection', function(socket)
 		// Transmet le message au module Daffy (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		daffy.handleDaffy(io, message);
 	});
+
+	// Gestion du wizz
+	wizz.handleWizz(io, socket);
 });
 
 // Lance le serveur sur le port 8080 (http://localhost:8080)
