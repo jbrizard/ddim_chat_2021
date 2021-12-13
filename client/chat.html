@@ -9,10 +9,37 @@
 		
 		<link rel="stylesheet" href="style.css" />
 		<link rel="stylesheet" href="/modules/daffy/daffy.css" />
+		<link rel="stylesheet" href="/modules/scribblio/scribblio.css" />
 	</head>
 	
 	<body>
 		<h1>Le Chat !</h1>
+
+		<!-- module scribblio -->
+		<div id="scribblioContainer">
+			<div id="scribblioOverlay">
+				<p>Cliquez pour participer !</p>
+			</div>
+			<div id="scribblio">
+				<div id="scribblio-others-mouse-pos"></div>
+			</div>
+		</div>
+		<div id="scribblioClose">
+			<p>X</p>
+		</div>
+		<div class="scribblioControls">
+			<div class="scribblioItem">
+				<label for="brushSize">Taille du pinceau</label>
+				<input type="range" name="brushSize" id="brushSize" min="2" max="20">
+			</div>
+		</div>
+		<div class="scribblioInfos">
+			<p>Clic gauche : dessiner</p>
+			<p>Clic droit : effacer</p>
+			<p style="border-top: 1px solid black; padding-top: 10px;">Liste des utilisateurs</p>
+			<div class="playerList"></div>
+		</div>
+		<!-- fin module scribblio -->
 		
 		<div id="chat">
 			<div id="messages">
@@ -25,5 +52,6 @@
 		</div>
 		
 		<script type="text/javascript" src="chat.js"></script>
+		<script type="text/javascript" src="modules/scribblio/scribblio.js"></script>
 	</body>
 </html>
