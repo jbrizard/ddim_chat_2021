@@ -10,6 +10,7 @@ var fs = require('fs');			// Accès au système de fichier
 var daffy = require('./modules/daffy.js');
 var infosClasse = require('./modules/infosClasse.js');
 var messagesHistory = require('./modules/messagesHistory.js');
+var scribblio = require('./modules/scribblio.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -27,6 +28,9 @@ app.get('/', function(req, res)
 // Traitement des fichiers "statiques" situés dans le dossier <assets> qui contient css, js, images...
 app.use(express.static(path.resolve(__dirname + '/../client/assets')));
 
+// Initialisation du module Scribblio
+scribblio.init(io);
+
 // Gestion des connexions au socket
 io.sockets.on('connection', function(socket)
 {
@@ -38,6 +42,9 @@ io.sockets.on('connection', function(socket)
 	{
 		// Stocke le nom de l'utilisateur dans l'objet socket
 		socket.name = name;
+
+		// Ajoute le client au scribblio
+		scribblio.addClient(socket);
 	});
 	
 	// Réception d'un message
