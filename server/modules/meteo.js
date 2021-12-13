@@ -41,7 +41,7 @@ function handleMeteo(io, message)
 		axios.get('http://api.weatherstack.com/current?access_key=' + meteoApiKey + '&query=' + meteoSearch.toLowerCase())
 		.then(response =>
 		{
-			var result = response.data;
+			var weather_descriptions = '';
 			console.log(response.data.location.name);
 			console.log(response.data.location.region);
 			console.log(response.data.location.country);
@@ -52,7 +52,25 @@ function handleMeteo(io, message)
 			console.log(response.data.current.humidity + '% d\'humidité');
 			console.log('----------------');
 
+			switch (response.data.current.weather_descriptions[0].toLowerCase())
+			{
+				case 'sunny':
+					weather_descriptions = 'Ensoleilé';
+					break;
+				case 'overcast':
+					weather_descriptions = 'Couvert ';
+					break;
+				case 'fog':
+					weather_descriptions = 'Brouillard';
+					break;
+				case 'cloudy':
+					weather_descriptions = 'Nuageux';
+					break;
 
+				default:
+					weather_descriptions = response.data.current.weather_descriptions[0];
+					break;
+			}
 
 			var meteoReply = '';
 			meteoReply +=
@@ -62,7 +80,7 @@ function handleMeteo(io, message)
 					<p>Date et heure :  `+ response.data.location.localtime +`</p>
 				</div>
 				<div class="meteo-affichage-data">
-					<p><img class="img-meteo" src="`+ response.data.current.weather_icons[0] +`" alt="icône metéo">&nbsp;&nbsp;&nbsp;`+ response.data.current.weather_descriptions[0] +` </p>
+					<p><img class="img-meteo" src="`+ response.data.current.weather_icons[0] +`" alt="icône metéo">&nbsp;&nbsp;&nbsp;`+ weather_descriptions +` </p>
 					<p>`+ response.data.current.temperature +` °C </p>
 					<p>`+ response.data.current.humidity +` % d\'humidité </p>
 				</div>
