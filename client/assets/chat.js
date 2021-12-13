@@ -15,6 +15,9 @@ $('#send-message').click(sendMessage);
 // Action quand on clique sur le bouton "Coeur"
 $(document).on('click', '.like-button', likeMessage);
 
+// Action quand on clique sur la reponse
+$(document).on('click', '.hide', displayBlague);
+
 // Action quand on appuye sur la touche [Entrée] dans le champ de message (= comme Envoyer)
 $('#message-input').keyup(function(evt)
 {
@@ -99,4 +102,13 @@ function updateMessage(data)
 	{
 		$('#like-count' + data.messageId).text('');
 	}
+}
+
+/**
+ * Permet d'afficher la réponse de la blague
+ */
+function displayBlague() 
+{
+	// Toggle la class permettant d'afficher la reponse
+	$(this).toggleClass('display');
 }
