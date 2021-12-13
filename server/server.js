@@ -9,6 +9,7 @@ var fs = require('fs');			// Accès au système de fichier
 // Chargement des modules perso
 var daffy = require('./modules/daffy.js');
 var like = require('./modules/like.js');
+var blague = require('./modules/blague.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -54,6 +55,9 @@ io.sockets.on('connection', function(socket)
 		
 		// Transmet le message au module Daffy (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		daffy.handleDaffy(io, message);
+
+		// Transmet le message au module Blague (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
+		blague.handleBlague(io, message);
 
 		// On initialise le compteur de like à 0 en fonction de l'id du message;
 		messageLikeTable[messageId] = 0;
