@@ -126,3 +126,40 @@ body>h1:hover {
 #features ul li {
 	margin-bottom:5px;
 }
+
+.meteo-affichage{
+	background-color: rgb(121, 121, 121);
+	border: solid black;
+	border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-ms-border-radius: 15px;
+	-o-border-radius: 15px;
+	color: white;
+	padding: 20px;
+}
+
+.meteo-info {
+	text-align: center;
+}
+
+.meteo-info>p {
+	margin: 0;
+	padding: 5px;
+}
+
+.meteo-affichage-data{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.meteo-affichage-data>p {
+	margin: 0;
+	padding: 5px;
+}
+
+.img-meteo{
+	height: 15px;
+	width: auto;
+}
