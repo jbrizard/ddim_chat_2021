@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\client",
+    "\\client\\assets",
+    "\\client\\assets\\modules",
+    "\\client\\assets\\modules\\tagUser",
+    "\\docs",
+    "\\server",
+    "\\server\\modules"
+  ],
+  "SelectedNode": "\\client\\assets\\modules\\tagUser\\tagUser.css",
+  "PreviewInSolutionExplorer": false
+}

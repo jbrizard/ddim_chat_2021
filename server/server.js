@@ -15,6 +15,7 @@ var infosClasse = require('./modules/infosClasse.js');
 var messagesHistory = require('./modules/messagesHistory.js');
 var basket = require('./modules/basket.js');
 var like = require('./modules/like.js');
+var tagUser = require('./modules/tagUser.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -63,6 +64,9 @@ io.sockets.on('connection', function(socket)
 		// Par sécurité, on encode les caractères spéciaux
 		message = ent.encode(message);
 		
+		// Test si l'utilisateur est tag avant d'envoyer le message
+		tagUser.userIsTagged(socket.name,message,io);
+
 		// Transmet le message à tous les utilisateurs (broadcast)
 		io.sockets.emit('new_message', {name:socket.name, message:message, messageId:messageId});
 		
@@ -81,8 +85,12 @@ io.sockets.on('connection', function(socket)
 		
 		// On initialise le compteur de like à 0 en fonction de l'id du message;
 		messageLikeTable[messageId] = 0;
+
+		
 	});
-	
+	// Reception de la demande d'auto completion.
+	tagUser.autoCompleteReceive(socket,io);
+
 	// Réception d'un ytChoice
 	socket.on('ytChoice', function(message)
 	{
@@ -112,6 +120,8 @@ io.sockets.on('connection', function(socket)
 		like.unLikeMessage(io,messageId, messageLikeTable)
 	});
 	
+
+
 });
 
 // Lance le serveur sur le port 8080 (http://localhost:8080)

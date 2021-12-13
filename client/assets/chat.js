@@ -15,6 +15,7 @@ socket.emit('user_enter', name);
 socket.on('new_message', receiveMessage);
 socket.on('wizz', receiveWizz);
 socket.on('update', updateMessage);
+socket.on('tagged', receiveTagged);
 
 // Action quand on clique sur le bouton "Envoyer"
 $('#send-message').click(sendMessage);
@@ -23,7 +24,7 @@ $('#send-message').click(sendMessage);
 $(document).on('click', '.like-button', likeMessage);
 
 // Action quand on appuye sur la touche [Entrée] dans le champ de message (= comme Envoyer)
-$('#message-input').keyup(function(evt)
+$(document).on('keyup', '#message-input', function(evt)
 {
 	if (evt.keyCode == 13) // 13 = touche Entrée
 		sendMessage();
@@ -41,9 +42,10 @@ function sendMessage()
 	var input = $('#message-input');
 	var message = input.val();
 	input.val('');
+	console.log("send",message);
 
 	//Vide le champ de texte après avoir ajouté un emoji
-	emojisPicker[0].emojioneArea.setText('');
+	//emojisPicker[0].emojioneArea.setText('');
 
 	// On n'envoie pas un message vide
 	if (message == '')
@@ -59,10 +61,10 @@ function sendMessage()
  */
 function receiveMessage(data)
 {
-	data.message = replaceEmoji(data.message);
+	//data.message = replaceEmoji(data.message);
 
 	$('#chat #messages').append(
-		'<div class="message" data-id="' + data.messageId + '">'
+		'<div class="message'+ (isTagged ? ' tagged' : '') + '" data-id="'  + data.messageId + '">'
 			+ '<div class="message-container">'
 				+ '<span class="user">' + data.name  + '</span> ' 
 				+ data.message 
@@ -78,8 +80,14 @@ function receiveMessage(data)
 
 	)
 	.scrollTop(function(){ return this.scrollHeight });  // scrolle en bas du conteneur
+	isTagged = false;
 }
 
+var isTagged = false;
+
+function receiveTagged(tagged){
+	isTagged = tagged;
+}
 /**
  * Envoi d'un wizz au serveur
  */
