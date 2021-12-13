@@ -13,7 +13,7 @@ module.exports =  {
 var _io;
 var sockets = {};
 
-setInterval(onEnterFrame, 10);
+setInterval(onEnterFrameScribblio, 10);
 
 /**
  * Initialisation du module
@@ -29,7 +29,7 @@ function init(io)
 function addClient(socket)
 {
 	sockets[socket.id] = socket;
-	socket.color = getRandomColor();
+	socket.color = getRandomColorScribblio();
 	
 	// événement envoyé par chaque client 30 fois par secondes
 	socket.on('mouseInteraction', function(userParams)
@@ -93,10 +93,10 @@ function refreshUsers()
  * Fonction appelée 30 fois par secondes :
  *	- transmission en broadcast de la position des autres utilisateurs
  */
-function onEnterFrame()
+function onEnterFrameScribblio()
 {
 	// stockage des positions de chaque utilisateur
-	var othersuserParams = [];
+	var othersUserParams = [];
 	
 	for (var i in sockets)
 	{
@@ -104,7 +104,7 @@ function onEnterFrame()
 		
 		if (socket.userParams)
 		{
-			othersuserParams.push({
+			othersUserParams.push({
 				id:socket.id,
 				color:socket.color,
 				userParams:socket.userParams
@@ -119,7 +119,7 @@ function onEnterFrame()
 		
 		socket.emit('scribblio_move', 
 		{
-			othersuserParams:othersuserParams		// position des autres utilisateurs
+			othersUserParams:othersUserParams		// position des autres utilisateurs
 		});
 	}
 }
@@ -127,7 +127,7 @@ function onEnterFrame()
 /**
  * Renvoie une couleur aléatoire
  */
-function getRandomColor()
+function getRandomColorScribblio()
 {
 	var letters = '0123456789ABCDEF';
 	var color = '#';

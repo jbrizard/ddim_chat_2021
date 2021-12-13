@@ -71,6 +71,10 @@ socket.on('scribblio_refresh_users', refreshUsers);
 /**
  * Méthode appelée lorsque la souris bouge
  */
+let posX;
+let posY;
+let oldPosX;
+let oldPosY;
 function mouseMove(e)
 {
 	if($('#scribblioContainer').hasClass('active'))
@@ -92,9 +96,15 @@ function mouseMove(e)
 		}
 	
 		// Informations de l'utilisateur
+		oldPosX = posX;
+		oldPosY = posY;
+		posX = e.offsetX / $(window).width();
+		posY = e.offsetY / $(window).height();
 		userParams = {
-			x: e.offsetX,
-			y: e.offsetY,
+			oldPosX: oldPosX,
+			posX: posX,
+			oldPosY: oldPosY,
+			posY: posY,
 			rightClickPressed: rightClickPressed,
 			leftClickPressed: leftClickPressed,
 			brushSize: $('#brushSize').val()
@@ -103,12 +113,12 @@ function mouseMove(e)
 }
 
 // Lance la boucle FPS
-setInterval(onEnterFrame, 10);
+setInterval(onEnterFrameScribblio, 10);
 
 /**
  * Méthode FPS : appelée x fois par secondes pour envoyer la position de la souris
  */
-function onEnterFrame()
+function onEnterFrameScribblio()
 {
 	// envoi un événement au serveur en transmettant la position de la souris
 	socket.emit('mouseInteraction', userParams);
@@ -119,9 +129,9 @@ function onEnterFrame()
  */
 function onScribblioMove(data)
 {
-	for (var i in data.othersuserParams)
+	for (var i in data.othersUserParams)
 	{
-		var mp = data.othersuserParams[i];
+		var mp = data.othersUserParams[i];
 		// Si un des deux clics est détecté
 		if(mp.userParams.rightClickPressed == true || mp.userParams.leftClickPressed == true)
 		{
@@ -156,8 +166,9 @@ function draw(mp)
 	ctx.strokeStyle = color;
 
 	// Coordonnées du trait
-	ctx.moveTo(mp.userParams.x, mp.userParams.y);
-	ctx.lineTo(mp.userParams.x, mp.userParams.y);
+	console.log(mp.userParams);
+	ctx.moveTo(mp.userParams.oldPosX * $(window).width(), mp.userParams.oldPosY * $(window).height());
+	ctx.lineTo(mp.userParams.posX * $(window).width(), mp.userParams.posY * $(window).height());
 
 	// Application du trait
 	ctx.stroke();
