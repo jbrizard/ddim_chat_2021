@@ -108,12 +108,10 @@ function mouseMove(e)
 			rightClickPressed: rightClickPressed,
 			leftClickPressed: leftClickPressed,
 			brushSize: $('#brushSize').val()
-		}
+		};
+		onEnterFrameScribblio();
 	}
 }
-
-// Lance la boucle FPS
-setInterval(onEnterFrameScribblio, 10);
 
 /**
  * Méthode FPS : appelée x fois par secondes pour envoyer la position de la souris
@@ -166,7 +164,6 @@ function draw(mp)
 	ctx.strokeStyle = color;
 
 	// Coordonnées du trait
-	console.log(mp.userParams);
 	ctx.moveTo(mp.userParams.oldPosX * $(window).width(), mp.userParams.oldPosY * $(window).height());
 	ctx.lineTo(mp.userParams.posX * $(window).width(), mp.userParams.posY * $(window).height());
 
