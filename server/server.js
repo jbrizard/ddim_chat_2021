@@ -20,6 +20,7 @@ var deleteMessage = require('./modules/deleteMessage.js');
 var blague = require('./modules/blague.js');
 var aimGame = require('./modules/aimGame.js');
 var moderateur = require('./modules/moderateur.js');
+var poll = require('./modules/poll.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -42,6 +43,18 @@ basket.init(io);
 
 // Déclaration d'un tableau vide pour les likes
 var messageLikeTable = [];
+
+const pollAnswer = 
+{
+	"0": {
+		votes : 0,
+		label : "Oui"
+	},
+	"1": {
+		votes : 0,
+		label : "Non"
+	}
+};
 
 // Gestion des connexions au socket
 io.sockets.on('connection', function(socket)
@@ -94,9 +107,13 @@ io.sockets.on('connection', function(socket)
 		// Transmet le message au module Blague (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		blague.handleBlague(io, message);
 
+		poll.handlePoll(io, message);
+        
 		// On initialise le compteur de like à 0 en fonction de l'id du message;
 		messageLikeTable[messageId] = 0;
+        
 	});
+    
 	// Reception de la demande d'autocompletion.
 	tagUser.autoCompleteReceive(socket,io);
 	
@@ -120,7 +137,7 @@ io.sockets.on('connection', function(socket)
 	{
 		io.sockets.emit('all_konami');
 	});
-
+    
 	// Gestion du wizz
 	wizz.handleWizz(io, socket);
 	
@@ -142,6 +159,20 @@ io.sockets.on('connection', function(socket)
 		aimGame.aimGame(io, compteur, socket.name);
 	});
 
+	// On receptionne le vote
+	socket.on("vote", (index) => {
+		
+		// Si on vote pour un des résulats, on lui ajoute +1
+		if (pollAnswer[index]) 
+		{
+			pollAnswer[index].votes += 1;
+		}
+
+		console.log(pollAnswer);
+		
+		// On actualise les résultats
+		io.emit("update", pollAnswer);
+	});
 });
 
 // Lance le serveur sur le port 8080 (http://localhost:8080)
