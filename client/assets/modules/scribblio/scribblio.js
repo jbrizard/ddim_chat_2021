@@ -3,40 +3,9 @@ var canvas = document.createElement('canvas');
 canvas.id = 'scribblioCanvas';
 $('#scribblio').append(canvas);
 
-var resized = false;
-
 document.body.style.margin = 0;
 canvas.style.width = '100%';
 canvas.style.height = '100%';
-
-// Events pour agrandir / réduire le module
-$('#scribblioContainer').click(function()
-	{
-		if (!($('#scribblioContainer').hasClass('active')))
-		{
-			$('#scribblioContainer, .scribblioControls, .scribblioInfos').addClass('active');
-			if (resized === false)
-			{
-				resized = true;
-				setTimeout(() => {
-					resize();
-				}, 500);
-			}
-		}
-	}
-);
-
-$('#scribblioClose').click(function()
-	{
-		$('#scribblioContainer, .scribblioControls, .scribblioInfos').removeClass('active');
-		if (resized === false)
-		{
-			setTimeout(() => {
-				resize();
-			}, 500);
-		}
-	}
-);
 
 // Contexte du canvas + application de la bonne taille
 var ctx = canvas.getContext('2d');
@@ -67,6 +36,10 @@ $('#scribblioContainer').on('contextmenu', function(e) {
 // Gestion des événements diffusés par le serveur
 socket.on('scribblio_move', onScribblioMove);
 socket.on('scribblio_refresh_users', refreshUsers);
+socket.on('scribblio_hide_word', hideWord);
+socket.on('scribblio_start_draw', startDraw);
+socket.on('scribblio_start_find', startFind);
+socket.on('scribblio_end_game', endGame);
 
 /**
  * Méthode appelée lorsque la souris bouge
@@ -109,12 +82,13 @@ function mouseMove(e)
 			leftClickPressed: leftClickPressed,
 			brushSize: $('#brushSize').val()
 		};
+
 		onEnterFrameScribblio();
 	}
 }
 
 /**
- * Méthode FPS : appelée x fois par secondes pour envoyer la position de la souris
+ * Méthode appelée lorque la souris bouge pour envoyer sa position
  */
 function onEnterFrameScribblio()
 {
@@ -157,7 +131,7 @@ function draw(mp)
 
 	// Initialisation du trait
 	ctx.beginPath();
-	
+
 	// Style du trait
 	ctx.lineWidth = mp.userParams.brushSize;
 	ctx.lineCap = 'round';
@@ -183,4 +157,54 @@ function refreshUsers(data)
 		var user = data.users[i];
 		$('.playerList').append('<p style="color: '+user.color+'">'+user.name+'</p>');
 	}
+}
+
+/**
+ * Méthode appelée lorsqu'un mot est défini
+ */
+function hideWord(data)
+{
+	let oldhtml = $('div.message:contains("/draw word ' + data.wordToFind + '")').html();
+	let regex = new RegExp(data.wordToFind,"g");
+	let newhtml = oldhtml.replace(regex, "********");
+	$('div.message:contains("/draw word ' + data.wordToFind + '")').html(newhtml);
+}
+
+/**
+ * Méthode appelée lorsque la partie commence et que l'utilisateur doit dessiner
+ */
+function startDraw(data)
+{
+	$('#scribblioContainer').addClass('visible');
+	$('#scribblioContainer, .scribblioControls, .scribblioInfos').addClass('active');
+	$('#wordToFind span').html(data.wordToFind);
+
+	setTimeout(() => {
+		resize();
+	}, 500);
+}
+
+/**
+ * Méthode appelée lorsque la partie commence et que l'utilisateur doit deviner le mot
+ */
+function startFind()
+{
+	$('#scribblioContainer').addClass('visible');
+
+	setTimeout(() => {
+		resize();
+	}, 500);
+}
+
+/**
+ * Méthode appelée lorsque la partie est terminée
+ */
+function endGame()
+{
+	$('#scribblioContainer').removeClass('visible');
+	$('#scribblioContainer, .scribblioControls, .scribblioInfos').removeClass('active');
+
+	setTimeout(() => {
+		resize();
+	}, 500);
 }

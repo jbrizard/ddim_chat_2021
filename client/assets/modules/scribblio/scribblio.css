@@ -1,23 +1,34 @@
 #scribblioContainer {
-    width: 20vw;
-    height: 20vh;
+    width: 0;
+    height: 0;
     position: absolute;
-    left: 5vw;
+    left: 50vw;
     top: 50vh;
-    transform: translateY(-50%);
+    transform: translate(-50%, -50%);
     border-radius: 10px;
     overflow: hidden;
     transition: all .2s;
     -webkit-box-shadow: 0px 0px 0px 0px #000000; 
     box-shadow: 0px 0px 0px 0px #000000;
+    opacity: 0;
+}
+
+#scribblioContainer.visible {
+    width: 60vw;
+    height: 60vh;
+    position: absolute;
+    left: 5vw;
+    top: 50vh;
+    transform: translateY(-50%) scale(.3);
+    transform-origin: center;
+    opacity: 1;
 }
 
 #scribblioContainer.active {
-    width: 60vw;
-    height: 60vh;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transform-origin: center;
     -webkit-box-shadow: 0px 0px 20px 0px #000000; 
     box-shadow: 0px 0px 20px 0px #000000;
 }
@@ -34,51 +45,6 @@
 
 #scribblioContainer.active #scribblio {
     z-index: 9;
-}
-
-#scribblioOverlay {
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.2);
-    transition: all .2s;
-    cursor: pointer;
-}
-
-#scribblioContainer:hover #scribblioOverlay {
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-#scribblioOverlay p {
-    color: black;
-    z-index: 2;
-    cursor: pointer;
-}
-
-#scribblioClose {
-    display: none;
-    position: absolute;
-    top: 2vh;
-    right: 2vh;
-    border-radius: 15px;
-    background-color: white;
-    border: 1px solid black;
-    width: 25px;
-    height: 25px;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-#scribblioClose p {
-    color: black;
-}
-
-#scribblioContainer.active ~ #scribblioClose {
-    display: flex;
 }
 
 .scribblioControls {

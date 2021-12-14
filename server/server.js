@@ -64,6 +64,9 @@ io.sockets.on('connection', function(socket)
 
 		// Récupère les anciens messages de l'utilisateur
 		messagesHistory.addMessageToHistory(socket, fs, message);
+
+		// Exécute les commandes du module Scribblio
+		scribblio.scribblioCommands(io, message, socket);
 	});
 });
 
