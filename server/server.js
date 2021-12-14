@@ -76,9 +76,9 @@ io.sockets.on('connection', function(socket)
 		like.unLikeMessage(io,messageId, messageLikeTable)
 	});
 	
+	// Réception la fin d'une partie et le score
 	socket.on('aim-score', function(compteur)
 	{
-		console.log(compteur);
 		aimGame.aimGame(io, compteur, socket.name);
 	});
 

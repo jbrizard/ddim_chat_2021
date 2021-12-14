@@ -1,20 +1,20 @@
 /*
- * Nom : Like
- * Description : Ce module permet de liker et dislike un message
+ * Nom : AimGame
+ * Description : Ce module permet de retourner le score d'une partie de AimGame
  * Auteur(s) : LANDEAU-COULAND
  */
 
 // Définit les méthodes "publiques" (utilisation à l'extérieur du module)
 module.exports =  {
-	aimGame: aimGame, // permet d'appeler cette méthode dans server.js -> like.aimGame(...)
+	aimGame: aimGame, // permet d'appeler cette méthode dans server.js -> aimGame.aimGame(...)
 }
 
 /**
- * Action lorsqu'on like un message
+ * Action lorsqu'on receptionne un score
  */
  function aimGame(io, compteur, name)
  {	
-    // Si oui, envoie la réponse de Daffy...
+    // On renvoie un message contenant le score
 	io.sockets.emit('new_message',
 	{
 			name: name,
