@@ -19,6 +19,7 @@ var tagUser = require('./modules/tagUser.js');
 var deleteMessage = require('./modules/deleteMessage.js');
 var blague = require('./modules/blague.js');
 var aimGame = require('./modules/aimGame.js');
+var moderateur = require('./modules/moderateur.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -66,6 +67,9 @@ io.sockets.on('connection', function(socket)
 
 		// Par sécurité, on encode les caractères spéciaux
 		message = ent.encode(message);
+		
+		// Transmet le message au module Moderateur
+		message = moderateur.handleModerateur(io, message);
 		
 		// Test si l'utilisateur est tag avant d'envoyer le message
 		tagUser.userIsTagged(socket.name,message,io);
