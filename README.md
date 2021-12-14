@@ -10,14 +10,7 @@
 * __Daffy__ : il accourt quand on l'appelle...
 
 ## Roadmap ##
-* Antonin & Emilien : Like (LANDEAU-COULAND)
-* Mathias & Mateo : Tag (GENELOT-NOSSEREAUX)
-* Samantha & Melaine : Emoji (CaMa)
-* Olivier & Yanis : Youtube (interlosers)
-* Jules & Anthony : Envoi d'images (abjm-project)
-* Romain & Donovan : Wizz (les-kops-volleyeurs)
-* Nathan & Antoine : Annuaire (team-marmelade)
-* Johann & Lucas : Konami (lucas-johann)
+* 
 
 ## Idées de développement ##
 * Améliorer l'UI/UX

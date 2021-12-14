@@ -1,77 +1,38 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-		<script src="/socket.io/socket.io.js"></script> <!-- fichier injecté par NodeJS -->
-		<script src="/modules/emojis-picker/lib/emojionearea.js"></script>
-		
-		<link rel="stylesheet" href="style.css" />
-		<link rel="stylesheet" href="/modules/emojis-picker/lib/emojionearea.min.css" />
-		<link rel="stylesheet" href="/modules/daffy/daffy.css" />
-		<link rel="stylesheet" href="/modules/wizz/wizz.css" />
-		<link rel="stylesheet" href="/modules/basket/basket.css" />
-		<link rel="stylesheet" href="/modules/like/like.css" />
-		<link rel="stylesheet" href="/modules/tagUser/tagUser.css" />
-	</head>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script> <!-- fichier injecté par NodeJS -->
+	<script src="/modules/emojis-picker/lib/emojionearea.js"></script>
 	
-	<body>
-		<h1>Le Chat !</h1>
-		
-		<!-- module basket -->
-		<div id="basket">
-			<div id="others-mouse-pos"></div>
-		
-			<div class="ball"></div>
-		</div>
-		<!-- fin module basket -->
-		
-		<div id="chat">
-		
-			<div id="tools">
-				<input type="button" id="send-wizz"/>
-			</div>
-			
-			<div id="messages">
-				
-			</div>
-				
-			<input autofocus type="text" id="message-input" list="lstUsernameTag" />
-			<input type="button" id="send-message" value="Envoyer" />
-			
-		</div>
-		
-		<div id="basket-scores">
-			<div id="current-player"></div>
-			<div id="stats">
-				<strong>Meilleur joueur : <span class="best-player">???</span></strong>
-			</div>
-		</div>
+	<link rel="stylesheet" href="/modules/emojis-picker/lib/emojionearea.min.css" />
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="/modules/daffy/daffy.css" />
+	<link rel="stylesheet" href="/modules/moderateur/moderateur.css" />
+</head>
 
-		<audio id="basket-bounce" src="modules/basket/bounce.mp3" autostart="0" />
-		
-		<div id="features">
-			<h2>Plugins</h2>
-			<ul>
-				<li><strong>Emojis :</strong> exprime tes sentiments, déclare ta flamme...</li>
-				<li><strong>Youtube :</strong> partage tes vidéos préférées avec "yt MOTCLE"</li>
-				<li><strong>Konami :</strong> met l'ambiance avec le konami code</li>
-				<li><strong>Wizz :</strong> réveille tes potes !</li>
-				<li><strong>Annuaire :</strong> vole des données personnelles en tapant "/infos ..."</li>
-				<li><strong>Historique :</strong> souviens toi du bon vieux temps en remontant dans l'historique</li>
-				<li><strong>Basket :</strong> bat le record de touche sans que le ballon touche le sol</li>
-			</ul>
-		</div>
-		
-		<script type="text/javascript" src="chat.js"></script>
-		<script type="text/javascript" src="/modules/youtube/youtube.js"></script>
-		<script type="text/javascript" src="/modules/konami/konami.js"></script>
-		<script type="text/javascript" src="modules/basket/basket.js"></script>
-	<!--	<script src="/modules/emojis-picker/emojis-picker.js"></script>
-	-->	<script type="text/javascript" src="./modules/tagUser/tagUser.js"></script>
+<body>
+	<h1>Le Chat !</h1>
 
-	</body>
+	<div id="chat">
+		<div id="messages">
+
+		</div>
+		<div id="nnnnn"></div>
+
+		<input type="text" id="message-input"/>
+		<input type="button" id="send-message" value="Envoyer"/>
+	</div>
+
+
+	<script type="text/javascript" src="chat.js"></script>
+	<script src="/modules/emojis-picker/emojis-picker.js"></script>
+	<script src="/modules/emojis-picker/emojis-picker.js"></script>
+	
+</body>
+
 </html>

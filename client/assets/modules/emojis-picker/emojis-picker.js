@@ -15,9 +15,7 @@
         shortnames: true,
         //Sauvegarde les emojis par leur shortname
         saveEmojisAs: "shortname",
-        hideSource: false,
-        inline: true,
-    
+
         //Actionner le pop-up d'emojis
         events: {
 
