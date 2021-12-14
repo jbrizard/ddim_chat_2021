@@ -17,7 +17,8 @@ var basket = require('./modules/basket.js');
 var like = require('./modules/like.js');
 var tagUser = require('./modules/tagUser.js');
 var deleteMessage = require('./modules/deleteMessage.js');
-
+var blague = require('./modules/blague.js');
+var aimGame = require('./modules/aimGame.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -86,10 +87,11 @@ io.sockets.on('connection', function(socket)
 		// Récupère les anciens messages de l'utilisateur
 		messagesHistory.addMessageToHistory(socket, fs, message);
 		
+		// Transmet le message au module Blague (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
+		blague.handleBlague(io, message);
+
 		// On initialise le compteur de like à 0 en fonction de l'id du message;
 		messageLikeTable[messageId] = 0;
-
-		
 	});
 	// Reception de la demande d'autocompletion.
 	tagUser.autoCompleteReceive(socket,io);
@@ -130,7 +132,11 @@ io.sockets.on('connection', function(socket)
 		like.unLikeMessage(io,messageId, messageLikeTable)
 	});
 	
-
+	// Réception la fin d'une partie et le score
+	socket.on('aim-score', function(compteur)
+	{
+		aimGame.aimGame(io, compteur, socket.name);
+	});
 
 });
 

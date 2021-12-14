@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
 		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		
 		<script src="/socket.io/socket.io.js"></script> <!-- fichier injecté par NodeJS -->
 		<script src="/modules/emojis-picker/lib/emojionearea.js"></script>
 		<script src="https://kit.fontawesome.com/9099ad696d.js" crossorigin="anonymous"></script>
@@ -16,8 +17,12 @@
 		<link rel="stylesheet" href="/modules/wizz/wizz.css" />
 		<link rel="stylesheet" href="/modules/basket/basket.css" />
 		<link rel="stylesheet" href="/modules/like/like.css" />
+		
 		<link rel="stylesheet" href="/modules/tagUser/tagUser.css" />
 		<link rel="stylesheet" href="/modules/deleteMessage/deleteMessage.css" />
+		
+		<link rel="stylesheet" href="/modules/blague/blague.css" />
+		<link rel="stylesheet" href="/modules/aimGame/aim-game.css" />
 
 	</head>
 	
@@ -68,6 +73,18 @@
 				<li><strong>Basket :</strong> bat le record de touche sans que le ballon touche le sol</li>
 			</ul>
 		</div>
+
+		<div class="aim-game">
+			<p>Soit le plus rapide, et fait le plus de points en cliquant sur les cibles qui apparaissent !</p>
+			<div class="stats-aim-game">
+				<div class="timer"><p>Timer : </p> </div>
+				<div class="compteur"><p>Score : </p></div>
+			</div>
+			<div class="cibles-container">
+				<button class="start-game">Start</button>
+			</div>
+		</div>
+		<button class="start-aim-game"><i class="fas fa-bullseye"></i> Aim Game</button>	
 		
 		<script type="text/javascript" src="chat.js"></script>
 		<script type="text/javascript" src="/modules/youtube/youtube.js"></script>
