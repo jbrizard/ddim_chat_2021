@@ -16,6 +16,8 @@ var messagesHistory = require('./modules/messagesHistory.js');
 var basket = require('./modules/basket.js');
 var like = require('./modules/like.js');
 var tagUser = require('./modules/tagUser.js');
+var deleteMessage = require('./modules/deleteMessage.js');
+
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -88,8 +90,12 @@ io.sockets.on('connection', function(socket)
 
 		
 	});
-	// Reception de la demande d'auto completion.
+	// Reception de la demande d'autocompletion.
 	tagUser.autoCompleteReceive(socket,io);
+	
+	// Réception suppression d'un message
+	deleteMessage.deleteMessage(socket,io);
+
 
 	// Réception d'un ytChoice
 	socket.on('ytChoice', function(message)

@@ -4,27 +4,64 @@
  * Auteur(s) : Matteo Nossereau / Mathias Genelot 
  */
 
-
-socket.on("popupsetting",showPopUp);
+socket.on('receiveDeleteMessage',receiveDeleteMessage);
 
 /**
- * affiche la popup avec les actions possible
+ * affiche la popup avec les actions possible (suppression du message)
  */
-function showPopUp()
+function showPopUp(idMessage)
 {
 
-$('#btn-chat').click(function(){
-$('#btn-chat').before(
+// créer la popup
+$('.btn-setting-chat#'+idMessage+'').after(
     '<span class="menuBouton">'
-        +'<button class="deleteBouton">'
-            +'<p> une carte </p>'    
-        
-        //mettre les svg
-        +'</button>'
-        +'<button class="modifyBouton">'
-            //mettre les svg
-        +'</button>'
-    +'</span>'
-)});
 
+        // bouton de suppression
+        +'<button class="deleteBouton boutonSetting" onclick="deleteMessage('+idMessage+')" >'
+            + '<i class="far fa-trash-alt"></i>' 
+            + 'supprimer le message'
+        +'</button>'
+
+        // bouton fermeture de la popup
+        +'<button class="modifyBouton boutonSetting" onclick="closePopUp()">'
+            + '<i class="far fa-times-circle"></i>' 
+            + 'fermez la popup'
+        +'</button>'
+
+    +'</span>')
+
+    //disable les boutons pour ne pas ouvrir plusieur popup
+    $(".btn-setting-chat").prop("disabled",true);
+
+}
+
+
+/**
+ * envoie au serveur le demande de suppression du message 
+ * @param {*} idMessage 
+ */
+function deleteMessage(idMessage)
+{
+    socket.emit('deleteMessage',idMessage);
+    
+    closePopUp();
+}
+
+/**
+ * supprime le message pour tout le monde
+ * @param {*} idMessage 
+ */
+function receiveDeleteMessage(idMessage)
+{
+    $('.message[data-id='+idMessage+']').remove();
+}
+
+/**
+ * ferme la popup menubouton
+ */
+function closePopUp()
+{
+    $('.menuBouton').remove();
+
+    $(".btn-setting-chat").prop("disabled",false);
 }

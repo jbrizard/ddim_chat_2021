@@ -61,13 +61,17 @@ function sendMessage()
  */
 function receiveMessage(data)
 {
-	//data.message = replaceEmoji(data.message);
+	console.log(data.messageId);
 
+	//data.message = replaceEmoji(data.message);
 	$('#chat #messages').append(
 		'<div class="message'+ (isTagged ? ' tagged' : '') + '" data-id="'  + data.messageId + '">'
 			+ '<div class="message-container">'
 				+ '<span class="user">' + data.name  + '</span> ' 
-				+ data.message 
+				+ data.message     
+				+ '<button class="btn-setting-chat" id="'+data.messageId+'"  onclick="showPopUp('+data.messageId+')">'
+                	+ '<i class="fas fa-ellipsis-v"></i>'
+            	+ '</button>'
 			+ '</div>'	
 			// Ajout du conteneur de like avec les unique ID
 			+ '<div class="like-container">'
@@ -79,10 +83,15 @@ function receiveMessage(data)
 	    + '</div>'
 
 	)
+	
 	.scrollTop(function(){ return this.scrollHeight });  // scrolle en bas du conteneur
+
 	isTagged = false;
 }
 
+/**
+ * Attribue a lié à chaque client, permet de savoir s'il est tag ou non
+ */
 var isTagged = false;
 
 function receiveTagged(tagged){

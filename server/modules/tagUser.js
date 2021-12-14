@@ -1,6 +1,8 @@
 /*
  * Nom : tagUser
- * Description : Ce module permet de tager un utilisateur grâce au '@' il verra le message avec un fond jaunatre
+ * Description : Ce module permet de tager un utilisateur grâce au '@' 
+ *              il verra le message avec un fond jaunâtre et de proposé 
+ *              une autocomplétion des pseudos
  * Auteur(s) : Mathias Genelot - Matteo Nossereau
  */
 
@@ -32,7 +34,6 @@ function userIsTagged(name,message,io)
         if(message.includes('@'+socket.name))
         {
             socket.emit('tagged',true);
-            console.log(socket.name);
         }
     }
 }

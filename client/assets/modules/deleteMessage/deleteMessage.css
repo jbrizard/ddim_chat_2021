@@ -1,1 +1,62 @@
 /* module deletesMessage */
+.message .btn-setting-chat{
+    display: inline-block;
+    width: 25px;
+    margin: 0 0 0 15px;  /* haut | droit | bas | gauche */
+    border: none;
+    background:none; 
+    cursor: pointer;
+}
+
+.menuBouton 
+{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+    margin-left: 6.5rem;
+}
+
+.boutonSetting
+{
+    font-size: 1em;
+    padding: 1em;
+    margin: 0em 0em;
+    padding: 1em;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    color: white;
+    background-color: black;
+    width: 15em;
+    text-align: center;
+
+}
+
+.boutonSetting:hover 
+{
+    align-items: center;
+    background-color: rgb(54, 57, 63);
+    color: white;
+    
+}
+
+.deleteBouton
+{
+    color: red;
+}
+.deleteBouton:hover
+{
+    color: red;
+}
+
+.deleteBouton i{
+    padding: 0.1em;
+}
+.modifyBouton i{
+    padding: 0.1em;
+}

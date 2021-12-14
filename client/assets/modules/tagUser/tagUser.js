@@ -1,6 +1,8 @@
 /*
  * Nom : tagUser
- * Description : Ce module permet de tager un utilisateur grâce au '@' il verra le message avec un fond jaunatre
+ * Description :  * Description : Ce module permet de tager un utilisateur grâce au '@' 
+ *              il verra le message avec un fond jaunâtre et de proposé 
+ *              une autocomplétion des noms des clients
  * Auteur(s) : Matteo Nossereau - Mathias Genelot
  */
 console.log("ici ");

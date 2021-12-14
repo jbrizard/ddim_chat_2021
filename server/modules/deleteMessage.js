@@ -5,18 +5,19 @@
  */
 
 module.exports =  {
-
+    deleteMessage: deleteMessage,
 }
 /**
  * supprime le message 
  * @param {*} io 
  * @param {*} message 
  */
-function deleteMessage(io,message)
+function deleteMessage(socket,io)
 {
-    if(message)
+    // envoie la demande de suppréssion demandé par l'utilisateur
+    socket.on('deleteMessage', function(idMessage)
     {
-        message.delete();
-    }
-}
+       io.sockets.emit('receiveDeleteMessage', idMessage);
+    });
 
+}
