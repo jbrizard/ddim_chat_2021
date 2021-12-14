@@ -60,17 +60,24 @@ function sendMessage()
  */
 function receiveMessage(data)
 {
+	
+	var btnModifyAndDelete ='';
+	// permet que seule l'envoyer puisse modifier et supprimer son message
+	if(data.isMe){
+         btnModifyAndDelete =  '<button class="btn-setting-chat" id="'+data.messageId+'"  onclick="showPopUp('+data.messageId+')">'
+        + '<i class="fas fa-ellipsis-v"></i>'
+    + '</button>';
+    } 
+
 	console.log(data.messageId);
 
 	//data.message = replaceEmoji(data.message);
 	$('#chat #messages').append(
-		'<div class="message'+ (data.isMe ? ' is-me' : '') + (isTagged ? ' tagged' : '') + '" data-id="'  + data.messageId + '">'
+		'<div class="message'+(isTagged ? ' tagged' : '')  + (data.isMe ? ' is-me' : '') + '" data-id="'  + data.messageId + '">'
 			+ '<div class="message-container">'
 				+ '<span class="user">' + data.name  + '</span> ' 
-				+ data.message     
-				+ '<button class="btn-setting-chat" id="'+data.messageId+'"  onclick="showPopUp('+data.messageId+')">'
-                	+ '<i class="fas fa-ellipsis-v"></i>'
-            	+ '</button>'
+				+ '<span class="message-text">' + data.message  + '</span>'     
+				+ btnModifyAndDelete
 			+ '</div>'	
 			// Ajout du conteneur de like avec les unique ID
 			+ '<div class="like-container">'

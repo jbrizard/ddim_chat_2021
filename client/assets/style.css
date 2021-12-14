@@ -47,6 +47,9 @@ h1 {
 #messages .message:nth-child(2n) {
 	background:rgba(0, 0, 0, .02);
 }
+#messages .message.is-me {
+	text-align:right;
+}
 #message-input {
 	display:inline-block;
 	border:solid 2px #888;

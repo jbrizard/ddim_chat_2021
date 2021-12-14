@@ -6,6 +6,7 @@
 
 module.exports =  {
     deleteMessage: deleteMessage,
+    modifyMessage: modifyMessage, 
 }
 /**
  * supprime le message 
@@ -18,6 +19,23 @@ function deleteMessage(socket,io)
     socket.on('deleteMessage', function(idMessage)
     {
        io.sockets.emit('receiveDeleteMessage', idMessage);
+    });
+
+}
+
+/**
+ * modifie le message
+ * @param {*} socket 
+ * @param {*} io 
+ */
+function modifyMessage(socket,io)
+{
+    // on recoit la modification demander par l'utilisateur
+    socket.on('modifyMessage', function(data)
+    {
+       // envoie la modification a tout les client 
+       io.sockets.emit('receiveModifyMessage',{idMessage : data.idMessage, inputText :data.inputText});
+
     });
 
 }

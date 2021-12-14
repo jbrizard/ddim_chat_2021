@@ -70,8 +70,8 @@ io.sockets.on('connection', function(socket)
 		tagUser.userIsTagged(socket.name,message,io);
 
 		// Transmet le message à tous les utilisateurs (broadcast)
-		socket.emit('new_message', {name:socket.name, message:message, isMe:true });
-		socket.broadcast.emit('new_message', {name:socket.name, message:message, isMe:false });
+		socket.emit('new_message', {messageId:messageId, name:socket.name, message:message, isMe:true });
+		socket.broadcast.emit('new_message', {messageId:messageId,name:socket.name, message:message, isMe:false });
 		
 		// Transmet le message au module Daffy (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		daffy.handleDaffy(io, message);
@@ -96,6 +96,9 @@ io.sockets.on('connection', function(socket)
 	
 	// Réception suppression d'un message
 	deleteMessage.deleteMessage(socket,io);
+	// Réception modification d'un message
+	deleteMessage.modifyMessage(socket,io);
+
 
 
 	// Réception d'un ytChoice
