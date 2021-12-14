@@ -1,7 +1,7 @@
 // Chargement des dépendances
 var express = require('express');	// Framework Express
 var http = require('http');		// Serveur HTTP
-var ioLib = require('socket.io');	// WebSocket
+var ioLib = require('socket.io')(http);	// WebSocket
 var ent = require('ent');		// Librairie pour encoder/décoder du HTML
 var path = require('path');		// Gestion des chemins d'accès aux fichiers	
 var fs = require('fs');			// Accès au système de fichier
@@ -13,7 +13,7 @@ var youtube = require('./modules/youtube.js');
 var wizz = require('./modules/wizz.js');
 var infosClasse = require('./modules/infosClasse.js');
 var messagesHistory = require('./modules/messagesHistory.js');
-var basket = require('./modules/basket.js');
+// var basket = require('./modules/basket.js');
 var like = require('./modules/like.js');
 var tagUser = require('./modules/tagUser.js');
 var deleteMessage = require('./modules/deleteMessage.js');
@@ -21,6 +21,7 @@ var blague = require('./modules/blague.js');
 var aimGame = require('./modules/aimGame.js');
 var moderateur = require('./modules/moderateur.js');
 var poll = require('./modules/poll.js');
+var scribblio = require('./modules/scribblio.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -39,7 +40,7 @@ app.get('/', function(req, res)
 app.use(express.static(path.resolve(__dirname + '/../client/assets')));
 
 // Initialisation du module Basket
-basket.init(io);
+// basket.init(io);
 
 // Déclaration d'un tableau vide pour les likes
 var messageLikeTable = [];
@@ -56,11 +57,14 @@ const pollAnswer =
 	}
 };
 
+// Initialisation du module Scribblio
+scribblio.init(io);
+
 // Gestion des connexions au socket
 io.sockets.on('connection', function(socket)
 {
 	// Ajoute le client au jeu de basket
-	basket.addClient(socket);
+	// basket.addClient(socket);
 	
 	// Récupère les anciens messages de l'utilisateur
 	messagesHistory.getMessagesHistory(socket, fs);
@@ -70,6 +74,9 @@ io.sockets.on('connection', function(socket)
 	{
 		// Stocke le nom de l'utilisateur dans l'objet socket
 		socket.name = name;
+
+		// Ajoute le client au scribblio
+		scribblio.addClient(socket);
 	});
 
 	// Réception d'un message
@@ -103,6 +110,9 @@ io.sockets.on('connection', function(socket)
 
 		// Récupère les anciens messages de l'utilisateur
 		messagesHistory.addMessageToHistory(socket, fs, message);
+        
+		// Exécute les commandes du module Scribblio
+		scribblio.scribblioCommands(io, message, socket);
 		
 		// Transmet le message au module Blague (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		blague.handleBlague(io, message);

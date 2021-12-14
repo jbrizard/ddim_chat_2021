@@ -87,9 +87,7 @@ function receiveMessage(data)
         + '<i class="fas fa-ellipsis-v"></i>'
     + '</button>';
     } 
-
-	console.log(data.messageId);
-
+    
 	//data.message = replaceEmoji(data.message);
 	$('#chat #messages').append(
 		'<div class="message'+(isTagged ? ' tagged' : '')  + (data.isMe ? ' is-me' : '') + '" data-id="'  + data.messageId + '">'

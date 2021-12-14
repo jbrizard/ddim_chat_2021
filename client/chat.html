@@ -15,7 +15,7 @@
 		<link rel="stylesheet" href="/modules/emojis-picker/lib/emojionearea.min.css" />
 		<link rel="stylesheet" href="/modules/daffy/daffy.css" />
 		<link rel="stylesheet" href="/modules/wizz/wizz.css" />
-		<link rel="stylesheet" href="/modules/basket/basket.css" />
+		<!--<link rel="stylesheet" href="/modules/basket/basket.css" />-->
 		<link rel="stylesheet" href="/modules/like/like.css" />
 		
 		<link rel="stylesheet" href="/modules/tagUser/tagUser.css" />
@@ -26,12 +26,34 @@
         
         <link rel="stylesheet" href="/modules/moderateur/moderateur.css" />
 		<link rel="stylesheet" href="/modules/poll/poll.css" />
+		<link rel="stylesheet" href="/modules/scribblio/scribblio.css" />
 	</head>
 	
 	<body>
 		<h1>Le Chat !</h1>
+
+		<!-- module scribblio -->
+		<div id="scribblioContainer">
+			<div id="scribblio">
+				<div id="scribblio-others-mouse-pos"></div>
+			</div>
+		</div>
+		<div class="scribblioControls">
+			<div class="scribblioItem">
+				<label for="brushSize">Taille du pinceau</label>
+				<input type="range" name="brushSize" id="brushSize" min="2" max="20">
+			</div>
+		</div>
+		<div class="scribblioInfos">
+			<p id="wordToFind">Le mot à faire deviner est : <span style="font-weight: bold; color: red;"></span></p>
+			<p style="border-top: 1px solid black; padding-top: 10px;">Clic gauche : dessiner</p>
+			<p>Clic droit : effacer</p>
+			<p style="border-top: 1px solid black; padding-top: 10px;">Liste des utilisateurs</p>
+			<div class="playerList"></div>
+		</div>
+		<!-- fin module scribblio -->
 		
-		<!-- module basket -->
+		<!-- module basket -- >
 		<div id="basket">
 			<div id="others-mouse-pos"></div>
 		
@@ -54,14 +76,15 @@
 			
 		</div>
 		
-		<div id="basket-scores">
+		<!--
+        <div id="basket-scores">
 			<div id="current-player"></div>
 			<div id="stats">
 				<strong>Meilleur joueur : <span class="best-player">???</span></strong>
 			</div>
 		</div>
 
-		<audio id="basket-bounce" src="modules/basket/bounce.mp3" autostart="0" />
+		<audio id="basket-bounce" src="modules/basket/bounce.mp3" autostart="0"></audio>-->
 		
 		<div id="features">
 			<h2>Plugins</h2>
@@ -91,10 +114,11 @@
 		<script type="text/javascript" src="chat.js"></script>
 		<script type="text/javascript" src="/modules/youtube/youtube.js"></script>
 		<script type="text/javascript" src="/modules/konami/konami.js"></script>
-		<script type="text/javascript" src="modules/basket/basket.js"></script>
-	<!--	<script src="/modules/emojis-picker/emojis-picker.js"></script>
-	-->	<script type="text/javascript" src="./modules/tagUser/tagUser.js"></script>
+		<!--<script type="text/javascript" src="modules/basket/basket.js"></script>
+		<script src="/modules/emojis-picker/emojis-picker.js"></script>-->
+		<script type="text/javascript" src="./modules/tagUser/tagUser.js"></script>
 		<script type="text/javascript" src="./modules/deleteMessage/deleteMessage.js"></script>
 		<script type="text/javascript" src="/modules/poll/poll.js"></script>
+		<script type="text/javascript" src="modules/scribblio/scribblio.js"></script>
 	</body>
 </html>

@@ -5,7 +5,6 @@
  *              une autocomplétion des noms des clients
  * Auteur(s) : Matteo Nossereau - Mathias Genelot
  */
-console.log("ici ");
 
 
 socket.on('autocomplete',receiveAutoComplete);
