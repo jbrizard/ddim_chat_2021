@@ -8,6 +8,7 @@ socket.emit('user_enter', name);
 // Gestion des événements diffusés par le serveur
 socket.on('new_message', receiveMessage);
 socket.on('update', updateMessage);
+socket.on('count', updateMessage);
 
 // Action quand on clique sur le bouton "Envoyer"
 $('#send-message').click(sendMessage);
@@ -17,6 +18,21 @@ $(document).on('click', '.like-button', likeMessage);
 
 // Action quand on clique sur la reponse
 $(document).on('click', '.hide', displayBlague);
+
+// Action quand on clique sur le bouton start aim game
+$(document).on('click', '.start-aim-game', displayAimGame);
+
+// Action quand on clique sur start game
+$(document).on('click', '.start-game', startAimGame);
+
+// Action quand on clique ssur la première cible
+$(document).on('click', '.first-cible', addCible);
+
+// Action quand on clique sur une cible
+$(document).on('click', '#cible', addCible);
+
+// Action quand on clique sur une cible
+$(document).on('click', '.fermer-aim-game', removeAimeGame);
 
 // Action quand on appuye sur la touche [Entrée] dans le champ de message (= comme Envoyer)
 $('#message-input').keyup(function(evt)
@@ -111,4 +127,129 @@ function displayBlague()
 {
 	// Toggle la class permettant d'afficher la reponse
 	$(this).toggleClass('display');
+}
+
+
+let compteur = 0;
+
+let temps;
+const timer = $(".timer");
+
+/**
+ * Permet d'afficher le jeu d'aim
+ */
+ function displayAimGame() 
+ {
+	$('.time-code').remove();
+
+	temps = 15;
+
+	$('.start-game').removeClass('remove-start');
+
+	$(".aim-game").toggleClass('display-aim-game');
+
+	timer.append(
+		'<div class="time-code">' + temps + '<div>'
+	)
+ }
+
+ /**
+ * Fait apparaitre le timer du jeu
+*/	
+function startTimer() 
+{
+	let interval = setInterval(() => {
+		if(temps > -1) {
+			$('.time-code').text(temps);
+			temps--;
+		} else {
+			clearInterval(interval);
+		}
+	}, 1000);
+}
+
+  /**
+ * Fait apparaitre le timer du jeu
+*/	
+function startCompteur() 
+{
+	$('.compteur').append(
+	'<div class="count">' + compteur + '<div>'
+	)
+}
+
+ /**
+ * Permet d'afficher de commencer le jeu d'aim
+ */
+ function startAimGame() 
+ {
+	$('.start-game').addClass('remove-start');
+
+	$('.cibles-container').append(
+		 '<div class="first-cible"><div>'
+	)
+
+
+	startCompteur();	
+	startTimer();
+
+	setTimeout(() => {
+		endGame();
+	}, 17000);
+}
+
+
+ /**
+ * Permet d'obtenir une width et une height random
+ */
+
+
+/**
+ * Fait pop des cibles random
+*/	
+function addCible() 
+{
+
+	compteur+=1;
+	$('.count').text(compteur);
+	var cibleSize = $('#cible').height();
+
+	var aimWidth = $('.cibles-container').width()  - (cibleSize);
+ 	var aimHeight = $('.cibles-container').height() - (cibleSize);
+
+	$(this).remove();
+
+    let currentWidth = (Math.floor(Math.random() * aimWidth));
+    let currentHeight = (Math.floor(Math.random() * aimHeight));
+
+	$('.cibles-container').append(
+		'<div id="cible"><div>'
+	)
+
+	document.getElementById('cible').style.top = currentHeight + "px";
+	document.getElementById('cible').style.left = currentWidth + "px";
+}
+
+function endGame()
+{
+	$('.aim-game').append(
+		'<div class="modal-end"> Votre score est de ' + compteur + 
+		'<button class="fermer-aim-game"> Fermer </button>'
+		+ '<div>'
+	)
+	
+	$('#cible').remove();
+	$('.count').remove();
+	$('.time-code').remove();
+
+	// Envoi le score au serveur pour broadcast
+	socket.emit('aim-score', compteur);
+}
+
+function removeAimeGame() {
+	$(".aim-game").toggleClass('display-aim-game');
+
+	$('.modal-end').remove();
+
+	compteur = 0;
 }

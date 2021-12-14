@@ -10,6 +10,7 @@ var fs = require('fs');			// Accès au système de fichier
 var daffy = require('./modules/daffy.js');
 var like = require('./modules/like.js');
 var blague = require('./modules/blague.js');
+var aimGame = require('./modules/aimGame.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -75,6 +76,12 @@ io.sockets.on('connection', function(socket)
 		like.unLikeMessage(io,messageId, messageLikeTable)
 	});
 	
+	socket.on('aim-score', function(compteur)
+	{
+		console.log(compteur);
+		aimGame.aimGame(io, compteur, socket.name);
+	});
+
 });
 
 // Lance le serveur sur le port 8080 (http://localhost:8080)
