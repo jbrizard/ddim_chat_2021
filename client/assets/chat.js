@@ -42,7 +42,6 @@ function sendMessage()
 	var input = $('#message-input');
 	var message = input.val();
 	input.val('');
-	console.log("send",message);
 
 	//Vide le champ de texte après avoir ajouté un emoji
 	//emojisPicker[0].emojioneArea.setText('');
@@ -65,7 +64,7 @@ function receiveMessage(data)
 
 	//data.message = replaceEmoji(data.message);
 	$('#chat #messages').append(
-		'<div class="message'+ (isTagged ? ' tagged' : '') + '" data-id="'  + data.messageId + '">'
+		'<div class="message'+ (data.isMe ? ' is-me' : '') + (isTagged ? ' tagged' : '') + '" data-id="'  + data.messageId + '">'
 			+ '<div class="message-container">'
 				+ '<span class="user">' + data.name  + '</span> ' 
 				+ data.message     
