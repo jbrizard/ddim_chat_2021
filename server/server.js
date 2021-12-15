@@ -163,7 +163,7 @@ io.sockets.on('connection', function(socket)
 	socket.on('ytChoice', function(message)
 	{
 		// Transmet le message à tous les utilisateurs (broadcast)
-		let iframeYT = '<iframe width="450" height="255" src="https://www.youtube.com/embed/' + message + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+		let iframeYT = '<iframe class="youtube-position" width="450" height="255" src="https://www.youtube.com/embed/' + message + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
 		io.sockets.emit('new_message', {name:'Youtube', avatar:socket.avatarYT, message:iframeYT});
 	});
 
