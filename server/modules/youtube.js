@@ -62,7 +62,12 @@ function handleYoutube(io, message)
             });
             list += '</ul>';
 
-            io.sockets.emit('new_message', {name:'Youtube', avatar:avatarYT, message:list});
+            io.sockets.emit('new_message',
+            {
+                name:'Youtube',
+                avatar:avatarYT,
+                message:list
+            });
         });
     }
 }
