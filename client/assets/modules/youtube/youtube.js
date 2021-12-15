@@ -11,7 +11,6 @@ function onClickYoutubeLoad()
     console.log(youtubeId);
 
     socket.emit('ytChoice', youtubeId);
-    // socket.emit('ytChoice', { youtubeId:youtubeId, bot:true });
 }
 
 /**

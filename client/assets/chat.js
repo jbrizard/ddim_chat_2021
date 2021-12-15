@@ -72,7 +72,7 @@ function sendMessage()
 	// On n'envoie pas un message vide
 	if (message == '')
 		return;
-	
+
 	// Envoi le message au serveur pour broadcast
 	socket.emit('message', message, textReplyTo);
 
@@ -96,8 +96,8 @@ function receiveMessage(data)
          btnModifyAndDelete =  '<button class="btn-setting-chat" id="'+data.messageId+'"  onclick="showPopUp('+data.messageId+')">'
         + '<i class="fas fa-ellipsis-v"></i>'
     + '</button>';
-    } 
-    
+    }
+
 	// Défini et regarde si on répond à un message ou non
 	var answeredMessage;
 
