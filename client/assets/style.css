@@ -179,3 +179,10 @@ body>h1:hover {
 	height: 15px;
 	width: auto;
 }
+
+#file{
+	display: inline-block;
+  	position: relative;
+  	overflow: hidden;
+	width: 100%;
+}

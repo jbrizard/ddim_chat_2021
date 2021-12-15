@@ -26,7 +26,7 @@ $('#send-message').click(sendMessage);
 
 // Action quand on clique sur le bouton "Coeur"
 $(document).on('click', '.like-button', likeMessage);
-$(document).on('click', '#btn-answer-to', showUserReplyingTo);
+$(document).on('click', '.btn-answer-to', showUserReplyingTo);
 
 // Action quand on clique sur la reponse
 $(document).on('click', '.hide', displayBlague);
@@ -102,16 +102,18 @@ function receiveMessage(data)
 	var answeredMessage;
 
 	if(data.textReplyTo != null)
-		answeredMessage = '<p>' + data.textReplyTo + '</p>';
+		answeredMessage = '<div class="replied-text">' + data.textReplyTo + '</div>';
 	else
 		answeredMessage = '';
-
+	
 	//data.message = replaceEmoji(data.message);
 	$('#chat #messages').append(
 		answeredMessage
 		+ 
 		'<div class="message'+(isTagged ? ' tagged' : '')  + (data.isMe ? ' is-me' : '') + '" data-id="'  + data.messageId + '">'
-			+ '<div class="message-container">'
+				// Affichage de l'avatar
+				+ '<img class="avatar" src="' + data.avatar +'">'
+				+ '<div class="message-container">'
 				+ '<span class="user">' + data.name  + '</span> ' 
 				+ '<span class="message-text">' + data.message  + '</span>'     
 				+ btnModifyAndDelete
@@ -124,9 +126,11 @@ function receiveMessage(data)
 				+'</div>'
 			+ '</div>'
 			// Ajout du conteneur qui apparait au hover permettant de répondre au message
-			+'<div id="answer-to">'
-				+'<input type="button" id="btn-answer-to" value="Répondre"></input>'
-			+'</div>'
+			+ (!data.isMe ?
+				'<div id="answer-to">'
+					+'<input type="button" class="btn-answer-to" value="Répondre"></input>'
+				+'</div>'
+				: '')
 	    + '</div>'
 
 	)

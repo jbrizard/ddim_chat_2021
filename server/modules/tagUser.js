@@ -24,13 +24,11 @@ function userIsTagged(name,message,io)
     
     message = message.toLowerCase();
     
-    var socketIds = Object.keys(io.sockets.sockets);
-
-    //parcourt tous les clients
-    for (var i in socketIds)
-    {
-        socket = io.sockets.sockets[socketIds[i]];
-
+	var sockets = io.of('/').sockets;
+	
+	//On parcours tous les client pour récupérer leur nom
+	for (let [socketId, socket] of sockets)
+	{   
         if(message.includes('@'+socket.name))
         {
             socket.emit('tagged',true);
@@ -56,17 +54,19 @@ function getAllUserName(io,message)
         messageBehindTag = messageSplit[messageSplit.length-1];
 
         var lstUsername = [];
-
+		
+		var sockets = io.of('/').sockets;
+		
         //On parcours tous les client pour récupérer leur nom
-        Object.keys(io.sockets.sockets).forEach(function(socketid) 
+		for (let [socketId, socket] of sockets)
         {   
-            socket = io.sockets.sockets[socketid];
             name = socket.name;
+			console.log('name', name);
             //On test si le nom du client contient le message après le @.
             if (name != undefined)
                 if (name.includes(messageBehindTag))
                     lstUsername.push(name);
-        });
+        };
     }
     return lstUsername;
 }
@@ -81,6 +81,7 @@ function autoCompleteReceive(socket,io)
     // La demande d'auto completion est demandé par un utilisateur
     socket.on('autocomplete', function(message)
 	{	
+		console.log('autocomplete');
         // On envoie la liste des clients Tag 
 		socket.emit('autocomplete',getAllUserName(io,message));
 	});

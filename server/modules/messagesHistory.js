@@ -71,7 +71,6 @@ function addMessageToHistory(socket, fs, message)
                   console.log(err);
                 else
                 {
-                  console.log("Les données ont bien été ajoutées\n");
                 }
             }
             );
@@ -125,7 +124,6 @@ function createJsonFile(fs, newMessage)
           console.log(err);
         else
         {
-          console.log("Les données ont bien été ajoutées\n");
         }
     }
     );
