@@ -22,6 +22,7 @@
     transform: translateY(-50%) scale(.3);
     transform-origin: center;
     opacity: 1;
+    z-index: 9;
 }
 
 #scribblioContainer.active {
@@ -68,6 +69,7 @@
 
 .scribblioControls.active {
     bottom: 10px;
+    z-index: 9;
 }
 
 .scribblioItem {
@@ -100,6 +102,7 @@
 
 .scribblioInfos.active {
     right: 5vw;
+    z-index: 9;
 }
 
 .playerList {
