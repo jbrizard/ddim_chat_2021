@@ -10,6 +10,7 @@ var fs = require('fs');			// Accès au système de fichier
 var daffy = require('./modules/daffy.js');
 var youtubeMini = require('./modules/youtubeMini.js');
 var youtube = require('./modules/youtube.js');
+var meteo = require('./modules/meteo.js');
 var wizz = require('./modules/wizz.js');
 var infosClasse = require('./modules/infosClasse.js');
 var messagesHistory = require('./modules/messagesHistory.js');
@@ -22,6 +23,7 @@ var aimGame = require('./modules/aimGame.js');
 var moderateur = require('./modules/moderateur.js');
 var poll = require('./modules/poll.js');
 var scribblio = require('./modules/scribblio.js');
+var takover = require('./modules/takover.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -104,6 +106,8 @@ io.sockets.on('connection', function(socket)
 		// Transmet le message au module YoutubeMini (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		youtubeMini.handleYoutubeMini(io, message);
 		youtube.handleYoutube(io, message);
+		meteo.handleMeteo(io, message);
+		takover.handleTakover(io, message);
 		
 		// Récupère les infos de l'élève
 		infosClasse.getStudentsInformations(io, message);
