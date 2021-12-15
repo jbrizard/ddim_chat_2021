@@ -105,38 +105,44 @@ function receiveMessage(data)
 		answeredMessage = '<div class="replied-text">' + data.textReplyTo + '</div>';
 	else
 		answeredMessage = '';
-	
+
 	//data.message = replaceEmoji(data.message);
+	let likeAndReply = '';
+	if (!data.bot)
+	{
+		// Ajout du conteneur de like avec les unique ID
+		likeAndReply = '<div class="like-container">'
+			+'<span id="like-count' + data.messageId + '" class="like-count"></span>'
+			+'<div class="like-button">'
+				+ '<svg aria-hidden="true" focusable="false" id="like-icon" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>'
+			+'</div>'
+		+ '</div>'
+		// Ajout du conteneur qui apparait au hover permettant de répondre au message
+		+ (!data.isMe ?
+			'<div id="answer-to">'
+				+'<button type="submit" class="btn-answer-to"><i class="fas fa-reply"></i></button>'
+			+'</div>'
+			: '')
+		}
+
 	$('#chat #messages').append(
 		answeredMessage
-		+ 
+		+
 		'<div class="message'+(isTagged ? ' tagged' : '')  + (data.isMe ? ' is-me' : '') + '" data-id="'  + data.messageId + '">'
 				// Affichage de l'avatar
 				+ '<div class="message-container">'
 				+ '<div class="avatar-pseudo">'
 				+ '<img class="avatar" src="' + data.avatar +'">'
-				+ '<span class="user">' + data.name  + '</span> ' 
+				+ '<span class="user">' + data.name  + '</span> '
 				+ '</div>'
-				+ '<span class="message-text">' + data.message  + '</span>'     
+				+ '<span class="message-text">' + data.message  + '</span>'
 				+ btnModifyAndDelete
-				+ '</div>'	
-			// Ajout du conteneur de like avec les unique ID
-			+ '<div class="like-container">'
-				+'<span id="like-count' + data.messageId + '" class="like-count"></span>'
-				+'<div class="like-button">'
-					+ '<svg aria-hidden="true" focusable="false" id="like-icon" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>'
-				+'</div>'
-			+ '</div>'
-			// Ajout du conteneur qui apparait au hover permettant de répondre au message
-			+ (!data.isMe ?
-				'<div id="answer-to">'
-					+'<button type="submit" class="btn-answer-to"><i class="fas fa-reply"></i></button>'
-				+'</div>'
-				: '')
+				+ '</div>'
+			+ likeAndReply
 	    + '</div>'
 
 	)
-	
+
 	.scrollTop(function(){ return this.scrollHeight });  // scrolle en bas du conteneur
 
 	isTagged = false;
@@ -154,7 +160,7 @@ function receiveTagged(tagged){
  * Envoi d'un wizz au serveur
  */
 function sendWizz()
-{	
+{
 	// Envoi le wizz au serveur pour broadcast
     socket.emit('wizz_message');
 };
@@ -186,16 +192,16 @@ function likeMessage()
 {
 	// Changement de couleur du btn like
 	$(this).toggleClass('like');
-	
+
 	// Récupération de l'id unique d'un message
 	let messageId = $(this).closest(".message").data("id");
-	
+
 	// Vérifie si l'élément à la class "like" ou non
 	if ($(this).hasClass('like'))
 	{
 		socket.emit('like', messageId);
 	}
-	else 
+	else
 	{
 		socket.emit('unlike', messageId);
 	}
@@ -204,7 +210,7 @@ function likeMessage()
 /**
  * Permet d'afficher et de mettre à jour le nombre de like'
  */
-function updateMessage(data) 
+function updateMessage(data)
 {
 	// Affiche le nombre de like d'un message en fonction de l'id
 	$('#like-count' + data.messageId).text(data.nbLike);
@@ -219,7 +225,7 @@ function updateMessage(data)
 /**
  * Permet d'afficher la réponse de la blague
  */
-function displayBlague() 
+function displayBlague()
 {
 	// Toggle la class permettant d'afficher la reponse
 	$(this).toggleClass('display');
@@ -232,7 +238,7 @@ const timer = $(".timer");
 /**
  * Permet d'afficher le jeu d'aim
  */
- function displayAimGame() 
+ function displayAimGame()
  {
 	$('.time-code').remove();
 
@@ -250,8 +256,8 @@ const timer = $(".timer");
 
  /**
  * Fait apparaitre le timer du jeu
-*/	
-function startTimer() 
+*/
+function startTimer()
 {
 	// Gestion du timer
 	let interval = setInterval(() => {
@@ -266,8 +272,8 @@ function startTimer()
 
   /**
  * Fait apparaitre le compteur du jeu
-*/	
-function startCompteur() 
+*/
+function startCompteur()
 {
 	$('.compteur').append(
 	'<div class="count">' + compteur + '<div>'
@@ -277,7 +283,7 @@ function startCompteur()
  /**
  * Permet d'afficher la premiere cible
  */
- function startAimGame() 
+ function startAimGame()
  {
 	$('.start-game').addClass('remove-start');
 
@@ -286,7 +292,7 @@ function startCompteur()
 	)
 
 
-	startCompteur();	
+	startCompteur();
 	startTimer();
 
 	// A la fin du temps imparti, le jeu s'arrete
@@ -297,8 +303,8 @@ function startCompteur()
 
 /**
  * Fait pop des cibles random
-*/	
-function addCible() 
+*/
+function addCible()
 {
 	// A chaque cible cliqué, on ajoute 1 au compteur
 	compteur+=1;
@@ -320,7 +326,7 @@ function addCible()
 	$('.cibles-container').append(
 		'<div id="cible"><div>'
 	)
-	
+
 	// Positionnement de la cible selon la position definie au prealable
 	document.getElementById('cible').style.top = currentHeight + "px";
 	document.getElementById('cible').style.left = currentWidth + "px";
@@ -336,7 +342,7 @@ function endGame()
 		'<button class="fermer-aim-game"> Fermer </button>'
 		+ '<div>'
 	)
-	
+
 	// Réinitialisation des parametres
 	$('#cible').remove();
 	$('.count').remove();

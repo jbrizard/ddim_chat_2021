@@ -99,7 +99,8 @@ function handleMeteo(io, message)
 			{
 				name: 'Meteo',
                 avatar:avatarMeteo,
-				message: meteoReply
+				message: meteoReply,
+                bot: true
 			});
 
 

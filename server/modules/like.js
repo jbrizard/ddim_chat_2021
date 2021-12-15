@@ -16,7 +16,7 @@ module.exports =  {
 function likeMessage(io, messageId, nbLike)
 {
     nbLike[messageId] ++ ;
-	io.sockets.emit('update', {nbLike:nbLike[messageId], messageId}) 
+	io.sockets.emit('update', {nbLike:nbLike[messageId], messageId});
 }
 
 /**
@@ -25,5 +25,5 @@ function likeMessage(io, messageId, nbLike)
 function unLikeMessage(io, messageId, nbLike)
 {
     nbLike[messageId] -- ;
-	io.sockets.emit('update', {nbLike:nbLike[messageId], messageId}) 
+	io.sockets.emit('update', {nbLike:nbLike[messageId], messageId});
 }

@@ -66,7 +66,8 @@ function handleYoutube(io, message)
             {
                 name:'Youtube',
                 avatar:avatarYT,
-                message:list
+                message:list,
+                bot: true
             });
         });
     }
