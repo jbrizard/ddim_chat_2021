@@ -393,6 +393,17 @@ h1 {
 }
 
 /* Youtube */
+.ytb-list {
+	background-color: black;
+	border: solid 1px red;
+	padding: 15px;
+	margin: 0;
+	border-radius: 12px;
+}
+
+.ytb-element {
+	padding-bottom: 3px;
+}
 
 /* Champ input */
 .i-input {
