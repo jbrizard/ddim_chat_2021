@@ -231,7 +231,16 @@ h1 {
 	padding: 5px;
 }
 
+/* BTN supp et modifier */
+.btn-setting-chat{
+	margin: 0 !important;
+	font-size: 20px;
+}
 
+/* BTN like */
+.like-button:hover{
+	color: red;
+}
 
 /* Mon User */
 .is-me {
@@ -252,7 +261,7 @@ h1 {
 
 .message-text {
 	border: solid 1px black;
-	padding: 5px;
+	padding: 3px;
 	border-radius: 12px;
 	margin: 0 10px;
 	display: flex;
@@ -266,9 +275,6 @@ h1 {
 	align-items: center;
 }
 
-.btn-setting-chat{
-	margin: 0 !important;
-}
 
 /* Autre user */
 .message{
@@ -308,4 +314,17 @@ h1 {
 	justify-content: flex-end;
 	margin-right: 55px;
 	height: 20px;
+}
+
+/* Metéo class */
+.meteo-affichage {
+	background-color: #16394C;
+	border: solid 3px #5C7F93;
+	border-radius: 12px;
+	padding: 5px 100px;
+	min-width: 450px;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;;
 }
