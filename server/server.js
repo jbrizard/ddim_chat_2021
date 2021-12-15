@@ -146,7 +146,7 @@ io.sockets.on('connection', function(socket)
 		{
 			console.log("avatar");
 			// Stocke l'avatar de l'utilisateur dans l'objet socket
-			socket.avatar = avatar
+			socket.avatar = avatar;
 		})
     
 	// Reception de la demande d'autocompletion.
@@ -164,7 +164,7 @@ io.sockets.on('connection', function(socket)
 	{
 		// Transmet le message à tous les utilisateurs (broadcast)
 		let iframeYT = '<iframe width="450" height="255" src="https://www.youtube.com/embed/' + message + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
-		io.sockets.emit('new_message', {name:socket.name, message:iframeYT});
+		io.sockets.emit('new_message', {name:'Youtube', avatar:socket.avatarYT, message:iframeYT});
 	});
 
 	// Réception du code Konami.
