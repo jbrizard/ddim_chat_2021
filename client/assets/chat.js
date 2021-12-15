@@ -91,7 +91,9 @@ function receiveMessage(data)
 	//data.message = replaceEmoji(data.message);
 	$('#chat #messages').append(
 		'<div class="message'+(isTagged ? ' tagged' : '')  + (data.isMe ? ' is-me' : '') + '" data-id="'  + data.messageId + '">'
-			+ '<div class="message-container">'
+				// Affichage de l'avatar
+				+ '<img class="avatar" src="' + data.avatar +'">'
+				+ '<div class="message-container">'
 				+ '<span class="user">' + data.name  + '</span> ' 
 				+ '<span class="message-text">' + data.message  + '</span>'     
 				+ btnModifyAndDelete

@@ -136,3 +136,10 @@ body>h1:hover {
 	align-items: center;
 	justify-content: space-between;
 }
+
+#file{
+	display: inline-block;
+  	position: relative;
+  	overflow: hidden;
+	width: 100%;
+}

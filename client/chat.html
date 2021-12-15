@@ -27,9 +27,20 @@
         <link rel="stylesheet" href="/modules/moderateur/moderateur.css" />
 		<link rel="stylesheet" href="/modules/poll/poll.css" />
 		<link rel="stylesheet" href="/modules/scribblio/scribblio.css" />
+
+		<!-- CSS Module Picture (Envoie d'une image) par abjm-project -->
+		<link rel="stylesheet" href="/modules/picture/picture.css">
+		<!-- CSS Module Avatar (Ajout d'un avatar) par abjm-project -->
+		<link rel="stylesheet" href="/modules/avatar/avatar.css">
+		<!-- Librarie Dropzone (Glisser / Déposer) par abjm-project -->
+		<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+		<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
 	</head>
 	
 	<body>
+		<!-- Dropzone pour le Glisser / Déposer par abjm-project -->
+		<div id="dropzone"></div>
+
 		<h1>Le Chat !</h1>
 
 		<!-- module scribblio -->
@@ -69,6 +80,20 @@
 			
 			<div id="messages">
 				
+			</div>
+
+			<div id="file">
+				<!-- <div> par abjm project -->
+				<div id="sendImage">
+					<!-- Bouton pour envoyer une image -->
+					<button id="btn">Envoyer une image</button>
+					<input type="file" id="image-input" accept="image/png, image/jpeg"/>
+
+					<!-- Bouton pour ajouter une icône -->
+					<button id="btn-avatar">Changer d'avatar</button>
+					<input type="file" id="avatar-input" accept="image/png, image/jpeg"/>
+				</div>
+				<!-- </div> par abjm project -->
 			</div>
 				
 			<input autofocus type="text" id="message-input" list="lstUsernameTag" />
@@ -120,5 +145,9 @@
 		<script type="text/javascript" src="./modules/deleteMessage/deleteMessage.js"></script>
 		<script type="text/javascript" src="/modules/poll/poll.js"></script>
 		<script type="text/javascript" src="modules/scribblio/scribblio.js"></script>
+		<!-- Module Picture (Envoie d'une image) par abjm-project -->
+		<script type="text/javascript" src="/modules/picture/picture.js"></script>
+		<!-- Module Avatar (Ajout d'un avatar) par abjm-project -->
+		<script type="text/javascript" src="/modules/avatar/avatar.js"></script>
 	</body>
 </html>
