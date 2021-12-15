@@ -191,7 +191,6 @@ body>h1:hover {
 
 
 html{
-	border: solid red;
 	height: 100vh;
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -257,6 +256,7 @@ h1 {
 .user {
 	display: flex;
 	align-items: center;
+	text-transform: capitalize;
 }
 
 .message-text {
@@ -321,10 +321,50 @@ h1 {
 	background-color: #16394C;
 	border: solid 3px #5C7F93;
 	border-radius: 12px;
-	padding: 5px 100px;
+	padding: 5px;
 	min-width: 450px;
 	color: white;
 	display: flex;
 	flex-direction: column;
 	align-items: center;;
+}
+
+.meteo-info>p{
+	font-size: 15px;
+	margin: 0;
+}
+
+.meteo-affichage-data {
+	display: flex;
+}
+
+.img-meteo {
+	height: 85px;
+	margin-right: 15px;
+}
+
+.data-text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.data-text>p {
+	margin: 0;
+	padding-top: 5px;
+}
+
+#description-meteo {
+	font-size: 20px;
+	font-weight: bold;
+	padding-top: 0px;
+}
+
+#timestamp-meteo {
+	display: flex;
+	justify-content: flex-end;
+}
+
+#local-meteo {
+	font-size: 20px;
+	font-weight: bold;
 }

@@ -76,13 +76,16 @@ function handleMeteo(io, message)
 			meteoReply +=
 			`<div class="meteo-affichage">
 				<div class="meteo-info">
-					<p>`+ response.data.location.name +`, `+ response.data.location.region +`, `+ response.data.location.country +`</p>
-					<p>Date et heure :  `+ response.data.location.localtime +`</p>
+					<p id="local-meteo">`+ response.data.location.name +`, `+ response.data.location.region +`, `+ response.data.location.country +`</p>
+					<p id="timestamp-meteo">`+ response.data.location.localtime +`</p>
 				</div>
 				<div class="meteo-affichage-data">
-					<p><img class="img-meteo" src="`+ response.data.current.weather_icons[0] +`" alt="icône metéo">&nbsp;&nbsp;&nbsp;`+ weather_descriptions +` </p>
-					<p>`+ response.data.current.temperature +` °C </p>
-					<p>`+ response.data.current.humidity +` % d\'humidité </p>
+					<p><img class="img-meteo" src="`+ response.data.current.weather_icons[0] +`" alt="icône metéo"></p>
+					<div class="data-text">
+						<p id="description-meteo">`+ weather_descriptions +`</p>
+						<p>`+ response.data.current.temperature +` °C </p>
+						<p>`+ response.data.current.humidity +` % d\'humidité </p>
+					</div>
 				</div>
 			</div>`;
 			console.log(meteoReply);
