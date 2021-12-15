@@ -330,6 +330,20 @@ function setWord(io, html, word, socket)
 		html += 'Vous avez choisi le mot à faire deviner<br>';
 		html += 'A vos crayons !';
 		html += '</span>';
+
+		// Transmission à chaque client du début de la partie
+		for (var i in sockets)
+		{
+			var socket = sockets[i];
+
+			if(!(team1Members.includes(socket.name)))
+			{
+				socket.emit('scribblio_hide_word',
+				{
+					wordToFind: wordToFind		// mot à faire deviner
+				});
+			}
+		}
 	}
 	else
 	{
@@ -346,20 +360,6 @@ function setWord(io, html, word, socket)
 		name: 'Draw Bot',
 		message: html
 	});
-
-	// Transmission à chaque client du début de la partie
-	for (var i in sockets)
-	{
-		var socket = sockets[i];
-
-		if(!(team1Members.includes(socket.name)))
-		{
-			socket.emit('scribblio_hide_word',
-			{
-				wordToFind: wordToFind		// mot à faire deviner
-			});
-		}
-	}
 }
 
 /**
