@@ -66,8 +66,8 @@ io.sockets.on('connection', function(socket)
 	// Ajoute le client au jeu de basket
 	// basket.addClient(socket);
 	
-	// Récupère les anciens messages de l'utilisateur
-	messagesHistory.getMessagesHistory(socket, fs);
+	// // Récupère les anciens messages de l'utilisateur
+	// messagesHistory.getMessagesHistory(socket, fs);
 	
 	// Arrivée d'un utilisateur
 	socket.on('user_enter', function(name)
@@ -80,7 +80,7 @@ io.sockets.on('connection', function(socket)
 	});
 
 	// Réception d'un message
-	socket.on('message', function(message)
+	socket.on('message', function(message, textReplyTo)
 	{
 		// À chaque envoie de message on ajoute un id unique en fonction de la date
 		var messageId = Date.now();
@@ -95,8 +95,8 @@ io.sockets.on('connection', function(socket)
 		tagUser.userIsTagged(socket.name,message,io);
 
 		// Transmet le message à tous les utilisateurs (broadcast)
-		socket.emit('new_message', {messageId:messageId, name:socket.name, message:message, isMe:true });
-		socket.broadcast.emit('new_message', {messageId:messageId,name:socket.name, message:message, isMe:false });
+		socket.emit('new_message', {messageId:messageId, name:socket.name, message:message, isMe:true, textReplyTo:textReplyTo });
+		socket.broadcast.emit('new_message', {messageId:messageId,name:socket.name, message:message, isMe:false, textReplyTo:textReplyTo });
 		
 		// Transmet le message au module Daffy (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		daffy.handleDaffy(io, message);
@@ -121,7 +121,6 @@ io.sockets.on('connection', function(socket)
         
 		// On initialise le compteur de like à 0 en fonction de l'id du message;
 		messageLikeTable[messageId] = 0;
-        
 	});
     
 	// Reception de la demande d'autocompletion.
@@ -160,7 +159,7 @@ io.sockets.on('connection', function(socket)
 	// Réception d'un dislike
 	socket.on('unlike', function(messageId) 
 	{
-		like.unLikeMessage(io,messageId, messageLikeTable)
+		like.unLikeMessage(io, messageId, messageLikeTable)
 	});
 	
 	// Réception la fin d'une partie et le score

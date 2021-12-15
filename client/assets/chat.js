@@ -7,6 +7,9 @@ const audio2 = new Audio("/modules/wizz/sounds/wizz-sound.mp3");
 const audio3 = new Audio("/modules/wizz/sounds/toctoc.mp3");
 const wizzSounds = [audio, audio2, audio3];
 
+// Défini les variables pour le module répondre à
+var userReplyTo, textReplyTo;
+
 // Demande un pseudo et envoie l'info au serveur
 var name = prompt('Quel est votre pseudo ?');
 socket.emit('user_enter', name);
@@ -23,6 +26,7 @@ $('#send-message').click(sendMessage);
 
 // Action quand on clique sur le bouton "Coeur"
 $(document).on('click', '.like-button', likeMessage);
+$(document).on('click', '#btn-answer-to', showUserReplyingTo);
 
 // Action quand on clique sur la reponse
 $(document).on('click', '.hide', displayBlague);
@@ -70,7 +74,14 @@ function sendMessage()
 		return;
 	
 	// Envoi le message au serveur pour broadcast
-	socket.emit('message', message);
+	socket.emit('message', message, textReplyTo);
+
+	// Appelle dans le module replyTo la fonction pour vider les champs
+	emptyReplyTo();
+
+	// Réinitialise les valeurs locales du message auquel on répond
+	textReplyTo = '';
+	userReplyTo = '';
 }
 
 
@@ -79,7 +90,6 @@ function sendMessage()
  */
 function receiveMessage(data)
 {
-	
 	var btnModifyAndDelete ='';
 	// permet que seule l'envoyer puisse modifier et supprimer son message
 	if(data.isMe){
@@ -88,8 +98,18 @@ function receiveMessage(data)
     + '</button>';
     } 
     
+	// Défini et regarde si on répond à un message ou non
+	var answeredMessage;
+
+	if(data.textReplyTo != null)
+		answeredMessage = '<p>' + data.textReplyTo + '</p>';
+	else
+		answeredMessage = '';
+
 	//data.message = replaceEmoji(data.message);
 	$('#chat #messages').append(
+		answeredMessage
+		+ 
 		'<div class="message'+(isTagged ? ' tagged' : '')  + (data.isMe ? ' is-me' : '') + '" data-id="'  + data.messageId + '">'
 			+ '<div class="message-container">'
 				+ '<span class="user">' + data.name  + '</span> ' 
@@ -103,6 +123,10 @@ function receiveMessage(data)
 					+ '<svg aria-hidden="true" focusable="false" id="like-icon" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>'
 				+'</div>'
 			+ '</div>'
+			// Ajout du conteneur qui apparait au hover permettant de répondre au message
+			+'<div id="answer-to">'
+				+'<input type="button" id="btn-answer-to" value="Répondre"></input>'
+			+'</div>'
 	    + '</div>'
 
 	)
@@ -124,7 +148,7 @@ function receiveTagged(tagged){
  * Envoi d'un wizz au serveur
  */
 function sendWizz()
-{
+{	
 	// Envoi le wizz au serveur pour broadcast
     socket.emit('wizz_message');
 };
@@ -325,4 +349,20 @@ function removeAimeGame() {
 	$('.modal-end').remove();
 
 	compteur = 0;
+}
+
+// Affiche au client local l'utilisateur auquel il répond, et défini les variables qui seront envoyées au serveur
+function showUserReplyingTo()
+{
+	// Récupération de l'utilisateur auquel on répond
+	userReplyTo = $(this).closest('.message').find('.message-container .user').text();
+
+	// Récupération du message auquel on répond
+	textReplyTo = $(this).closest('.message').find('.message-container').text();
+
+	// On retire l'utilisateur du texte afin de garder seulement le message
+	messageReplyTo = textReplyTo.replace(userReplyTo + ' ', '');
+
+	// Appel de la fonction montrant au client à qui il va répondre
+	displayAnsweredMessage(userReplyTo);
 }
