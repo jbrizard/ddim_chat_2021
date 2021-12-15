@@ -101,7 +101,7 @@ function receiveMessage(data)
 	// Défini et regarde si on répond à un message ou non
 	var answeredMessage;
 
-	if(data.textReplyTo != null & data.textReplyTo.length > 2)
+	if(data.textReplyTo != null)
 		answeredMessage = '<div class="replied-text">' + data.textReplyTo + '</div>';
 	else
 		answeredMessage = '';
