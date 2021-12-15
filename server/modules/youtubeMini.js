@@ -20,10 +20,10 @@ function handleYoutubeMini(io, message)
 	// Recupere le code de la video Youtube
 	var youtubeCode = message.substring(8);
 	
-	// Est-ce qu'il contient une référence à Daffy ?
+	// Est-ce qu'il contient une référence à Ytb ?
 	if (messageMinified.startsWith('youtube:'))
 	{
-		// Si oui, envoie la réponse de Daffy...
+		// Si oui, envoie la réponse de Ytb...
 		io.sockets.emit('new_message',
 		{
 			name:'YoutubeMini',

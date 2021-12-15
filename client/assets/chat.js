@@ -112,12 +112,14 @@ function receiveMessage(data)
 		+ 
 		'<div class="message'+(isTagged ? ' tagged' : '')  + (data.isMe ? ' is-me' : '') + '" data-id="'  + data.messageId + '">'
 				// Affichage de l'avatar
-				+ '<img class="avatar" src="' + data.avatar +'">'
 				+ '<div class="message-container">'
+				+ '<div class="avatar-pseudo">'
+				+ '<img class="avatar" src="' + data.avatar +'">'
 				+ '<span class="user">' + data.name  + '</span> ' 
+				+ '</div>'
 				+ '<span class="message-text">' + data.message  + '</span>'     
 				+ btnModifyAndDelete
-			+ '</div>'	
+				+ '</div>'	
 			// Ajout du conteneur de like avec les unique ID
 			+ '<div class="like-container">'
 				+'<span id="like-count' + data.messageId + '" class="like-count"></span>'
@@ -128,7 +130,7 @@ function receiveMessage(data)
 			// Ajout du conteneur qui apparait au hover permettant de répondre au message
 			+ (!data.isMe ?
 				'<div id="answer-to">'
-					+'<input type="button" class="btn-answer-to" value="Répondre"></input>'
+					+'<button type="submit" class="btn-answer-to"><i class="fas fa-reply"></i></button>'
 				+'</div>'
 				: '')
 	    + '</div>'

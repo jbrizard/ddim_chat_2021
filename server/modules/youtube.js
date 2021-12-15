@@ -46,12 +46,12 @@ function handleYoutube(io, message)
                 return console.log(err);
             }
 
-            var list = '<ul>';
+            var list = '<ul class="list-ytb">';
             results.forEach(result =>
             {
                 //console.log(result);
                 list +=
-                    `<li>
+                    `<li class="ytb-text">
 						<button class="yt-choice" data-id="` + result['id'] + `"type="button">` +
                     result['title'].substring(0, 30) +
                     `</button>

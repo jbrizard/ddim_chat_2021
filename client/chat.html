@@ -14,21 +14,10 @@
 		<link rel="stylesheet" href="style.css" />
 		<link rel="stylesheet" href="/modules/emojis-picker/lib/emojionearea.min.css" />
 		<link rel="stylesheet" href="/modules/daffy/daffy.css" />
-		<link rel="stylesheet" href="/modules/wizz/wizz.css" />
-		<!--<link rel="stylesheet" href="/modules/basket/basket.css" />-->
 		<link rel="stylesheet" href="/modules/like/like.css" />
-		
 		<link rel="stylesheet" href="/modules/tagUser/tagUser.css" />
-		<link rel="stylesheet" href="/modules/deleteMessage/deleteMessage.css" />
-		
-		<link rel="stylesheet" href="/modules/blague/blague.css" />
-		<link rel="stylesheet" href="/modules/aimGame/aim-game.css" />
-        
+		<link rel="stylesheet" href="/modules/deleteMessage/deleteMessage.css" /> 
         <link rel="stylesheet" href="/modules/moderateur/moderateur.css" />
-		<link rel="stylesheet" href="/modules/poll/poll.css" />
-		<link rel="stylesheet" href="/modules/scribblio/scribblio.css" />
-		<link rel="stylesheet" href="/modules/replyTo/replyTo.css" />
-
 		<!-- CSS Module Picture (Envoie d'une image) par abjm-project -->
 		<link rel="stylesheet" href="/modules/picture/picture.css">
 		<!-- CSS Module Avatar (Ajout d'un avatar) par abjm-project -->
@@ -36,15 +25,24 @@
 		<!-- Librarie Dropzone (Glisser / Déposer) par abjm-project -->
 		<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 		<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> <!--font awesome icone-->
 	</head>
 	
 	<body>
 		<!-- Dropzone pour le Glisser / Déposer par abjm-project -->
-		<div id="dropzone"></div>
+		<!-- <div id="dropzone"></div> -->
 
-		<h1>Le Chat !</h1>
+		<div class="ic-header">
 
-		<!-- module scribblio -->
+			<div class="i-middle">
+				<h1>Le Chat</h1>
+			</div>
+			<div class="i-right">
+				<button><i class="fas fa-align-justify"></i></button>
+			</div>
+		</div>
+
+		<!-- module scribblio
 		<div id="scribblioContainer">
 			<div id="scribblio">
 				<div id="scribblio-others-mouse-pos"></div>
@@ -62,7 +60,7 @@
 			<p>Clic droit : effacer</p>
 			<p style="border-top: 1px solid black; padding-top: 10px;">Liste des utilisateurs</p>
 			<div class="playerList"></div>
-		</div>
+		</div> -->
 		<!-- fin module scribblio -->
 		
 		<!-- module basket -- >
@@ -73,34 +71,37 @@
 		</div>
 		<!-- fin module basket -->
 		
-		<div id="chat">
-		
-			<div id="tools">
-				<input type="button" id="send-wizz"/>
-			</div>
-			
-			<div id="messages">
+		<div class="ic-body">
+			<div id="chat">
+				<!-- <div id="tools">
+					<input type="button" id="send-wizz"/>
+				</div> -->
 				
-			</div>
-
-			<div id="file">
-				<!-- <div> par abjm project -->
-				<div id="sendImage">
-					<!-- Bouton pour envoyer une image -->
-					<button id="btn">Envoyer une image</button>
-					<input type="file" id="image-input" accept="image/png, image/jpeg"/>
-
-					<!-- Bouton pour ajouter une icône -->
-					<button id="btn-avatar">Changer d'avatar</button>
-					<input type="file" id="avatar-input" accept="image/png, image/jpeg"/>
+				<div id="messages">
+					
 				</div>
-				<!-- </div> par abjm project -->
-			</div>
+	
+				<!-- <div id="file">
+					<div> par abjm project
+					<div id="sendImage">
+						Bouton pour envoyer une image
+						<button id="btn">Envoyer une image</button>
+						<input type="file" id="image-input" accept="image/png, image/jpeg"/>
+	
+						Bouton pour ajouter une icône
+						<button id="btn-avatar">Changer d'avatar</button>
+						<input type="file" id="avatar-input" accept="image/png, image/jpeg"/>
+					</div>
+					</div> par abjm project
+				</div> -->
+					
+				<p id="replyToText"></p>
 				
-			<p id="replyToText"></p>
-			
-			<input autofocus type="text" id="message-input" list="lstUsernameTag" />
-			<input type="button" id="send-message" value="Envoyer" />
+				<div class="i-input">
+					<input autofocus type="text" id="message-input" list="lstUsernameTag" />
+					<input type="button" id="send-message" value="Envoyer" />
+				</div>
+			</div>
 		</div>
 		
 		<!--
@@ -113,7 +114,7 @@
 
 		<audio id="basket-bounce" src="modules/basket/bounce.mp3" autostart="0"></audio>-->
 		
-		<div id="features">
+		<!-- <div id="features">
 			<h2>Plugins</h2>
 			<ul>
 				<li><strong>Emojis :</strong> exprime tes sentiments, déclare ta flamme...</li>
@@ -124,9 +125,9 @@
 				<li><strong>Historique :</strong> souviens toi du bon vieux temps en remontant dans l'historique</li>
 				<li><strong>Basket :</strong> bat le record de touche sans que le ballon touche le sol</li>
 			</ul>
-		</div>
+		</div> -->
 
-		<div class="aim-game">
+		<!-- <div class="aim-game">
 			<p>Soit le plus rapide, et fait le plus de points en cliquant sur les cibles qui apparaissent !</p>
 			<div class="stats-aim-game">
 				<div class="timer"><p>Timer : </p> </div>
@@ -136,7 +137,7 @@
 				<button class="start-game">Start</button>
 			</div>
 		</div>
-		<button class="start-aim-game"><i class="fas fa-bullseye"></i> Aim Game</button>	
+		<button class="start-aim-game"><i class="fas fa-bullseye"></i> Aim Game</button>	 -->
 		
 		<script type="text/javascript" src="chat.js"></script>
 		<script type="text/javascript" src="/modules/youtube/youtube.js"></script>
