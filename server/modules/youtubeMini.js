@@ -27,7 +27,7 @@ function handleYoutubeMini(io, message)
 		io.sockets.emit('new_message',
 		{
 			name:'YoutubeMini',
-			message:'<iframe width="450" height="255" src="https://www.youtube.com/embed/' + youtubeCode + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+			message:'<iframe width="100%" height="100%" src="https://www.youtube.com/embed/' + youtubeCode + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
 		});
 	}
 }

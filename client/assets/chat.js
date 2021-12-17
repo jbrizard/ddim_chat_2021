@@ -109,15 +109,20 @@ function receiveMessage(data)
 	//data.message = replaceEmoji(data.message);
 	$('#chat #messages').append(
 		answeredMessage
-		+ 
-		'<div class="message'+(isTagged ? ' tagged' : '')  + (data.isMe ? ' is-me' : '') + '" data-id="'  + data.messageId + '">'
+		+ '<div class="message'+(isTagged ? ' tagged' : '')  + (data.isMe ? ' is-me' : '') + '" data-id="'  + data.messageId + '">'
 				// Affichage de l'avatar
-				+ '<img class="avatar" src="' + data.avatar +'">'
+				+ '<div class="user-profile-image">'
+					
+					+ '<img style="margin: 0 -10px 0 5px;" class="avatar" src="' + data.avatar +'">' 
+					+ '<span class="user">' + data.name  + '</span>'
+					
+				+ '</div>'  
+				// + '<span class="user">' + data.name  + '</span> ' 
 				+ '<div class="message-container">'
-				+ '<span class="user">' + data.name  + '</span> ' 
-				+ '<span class="message-text">' + data.message  + '</span>'     
+					+ '<span class="message-text">' + data.message  + '</span>'
+				+ '</div>'
+			
 				+ btnModifyAndDelete
-			+ '</div>'	
 			// // Ajout du conteneur de like avec les unique ID
 			// + '<div class="like-container">'
 			// 	+'<span id="like-count' + data.messageId + '" class="like-count"></span>'
@@ -126,11 +131,11 @@ function receiveMessage(data)
 			// 	+'</div>'
 			// + '</div>'
 			// Ajout du conteneur qui apparait au hover permettant de répondre au message
-			+ (!data.isMe ?
-				'<div id="answer-to">'
-					+'<input type="button" class="btn-answer-to" value="Répondre"></input>'
-				+'</div>'
-				: '')
+			// + (!data.isMe ?
+			// 	'<div id="answer-to">'
+			// 		+'<input type="button" class="btn-answer-to" value="Répondre"></input>'
+			// 	+'</div>'
+			// 	: '')
 	    + '</div>'
 
 	)

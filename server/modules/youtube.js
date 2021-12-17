@@ -46,19 +46,22 @@ function handleYoutube(io, message)
                 return console.log(err);
             }
 
-            var list = '<ul>';
+            var list = '<div>';
+            var i = 1;
             results.forEach(result =>
             {
+                
                 //console.log(result);
                 list +=
-                    `<li>
-						<button class="yt-choice" data-id="` + result['id'] + `"type="button">` +
+                    `<div style="margin: 5px 0;">
+						<button style="" class="yt-choice" data-id="` + result['id'] + `"type="button">` +
                     result['title'].substring(0, 30) +
                     `</button>
-					</li>`;
+					</div>`;
                 console.log(list);
+                i++;
             });
-            list += '</ul>';
+            list += '</div>';
 
             io.sockets.emit('new_message',
             {

@@ -27,7 +27,7 @@
         <link rel="stylesheet" href="/modules/moderateur/moderateur.css" />
 		<link rel="stylesheet" href="/modules/poll/poll.css" />
 		<!-- <link rel="stylesheet" href="/modules/scribblio/scribblio.css" /> -->
-		<link rel="stylesheet" href="/modules/replyTo/replyTo.css" />
+		<!-- <link rel="stylesheet" href="/modules/replyTo/replyTo.css" /> -->
 
 		<!-- CSS Module Picture (Envoie d'une image) par abjm-project -->
 		<link rel="stylesheet" href="/modules/picture/picture.css">
@@ -47,7 +47,7 @@
 		</div>
 		
 		<div id="chat">
-			
+			<p id="replyToText"></p>
 			<div id="messages">
 				
 			</div>
@@ -63,10 +63,18 @@
 				</div>
 			</div> -->
 				
-			<p id="replyToText"></p>
 			
-			<input autofocus type="text" id="message-input" list="lstUsernameTag" />
-			<input type="button" id="send-message" value="Envoyer" />
+			
+
+			<div class="comment-wrapper">
+				<div class="sendImage">
+					<input type="file" id="image-input" accept="image/png, image/jpeg"/>
+					<div id="btn"><img class="img-upload" src="./img/upload.png" alt=""></div>
+					
+				</div>
+				<input autofocus type="text" id="message-input" class="comment-box" list="lstUsernameTag" />
+				<input type="button" id="send-message" value="Send" />
+			</div>
 		</div>
 
 		<!-- <div class="aim-game">
@@ -89,11 +97,11 @@
 		<script type="text/javascript" src="./modules/tagUser/tagUser.js"></script>
 		<script type="text/javascript" src="./modules/deleteMessage/deleteMessage.js"></script>
 		<script type="text/javascript" src="/modules/poll/poll.js"></script>
-		<script type="text/javascript" src="modules/scribblio/scribblio.js"></script>
-		<script type="text/javascript" src="/modules/replyTo/replyTo.js"></script>
+		<!-- <script type="text/javascript" src="modules/scribblio/scribblio.js"></script> -->
+		<!-- <script type="text/javascript" src="/modules/replyTo/replyTo.js"></script> -->
 		<!-- Module Picture (Envoie d'une image) par abjm-project -->
 		<script type="text/javascript" src="/modules/picture/picture.js"></script>
 		<!-- Module Avatar (Ajout d'un avatar) par abjm-project -->
-		<script type="text/javascript" src="/modules/avatar/avatar.js"></script>
+		<!-- <script type="text/javascript" src="/modules/avatar/avatar.js"></script> -->
 	</body>
 </html>

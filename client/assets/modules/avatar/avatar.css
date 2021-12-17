@@ -2,10 +2,10 @@
 
 #btn-avatar{
 	background-color: #fff;
-  	border: 3px solid #777;
+  	/* border: 3px solid #777; */
   	color: #777;
   	padding: 10px 10px;
-  	border-radius: 10px;
+  	/* border-radius: 10px; */
   	font-size: 12px;
   	font-weight: bold;
 	width: 160px;
