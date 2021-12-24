@@ -90,6 +90,7 @@ function sendMessage()
  */
 function receiveMessage(data)
 {
+	console.log(data);
 	var btnModifyAndDelete ='';
 	// permet que seule l'envoyer puisse modifier et supprimer son message
 	if(data.isMe){
@@ -108,14 +109,14 @@ function receiveMessage(data)
 	
 	//data.message = replaceEmoji(data.message);
 	$('#chat #messages').append(
+		
 		answeredMessage
 		+ 
-		'<div class="message'+(isTagged ? ' tagged' : '')  + (data.isMe ? ' is-me' : '') + '" data-id="'  + data.messageId + '">'
+		'<div class="message'+(isTagged ? ' tagged' : '')  + (data.isMe ? ' is-me' : '') + '" data-id="'  + data.messageId + '"message.search(/class="moderateur"/)>'
 				// Affichage de l'avatar
 				+ '<img class="avatar" src="' + data.avatar +'">'
 				+ '<div class="message-container">'
-				+ '<span class="user">' + data.name  + '</span> ' 
-				+ '<span class="message-text">' + data.message  + '</span>'     
+				+ '<span class="message-text">' + data.message  + '</span>'
 				+ btnModifyAndDelete
 			+ '</div>'	
 			// Ajout du conteneur de like avec les unique ID
@@ -126,11 +127,11 @@ function receiveMessage(data)
 				+'</div>'
 			+ '</div>'
 			// Ajout du conteneur qui apparait au hover permettant de répondre au message
-			+ (!data.isMe ?
+			/*+ (!data.isMe ?
 				'<div id="answer-to">'
 					+'<input type="button" class="btn-answer-to" value="Répondre"></input>'
 				+'</div>'
-				: '')
+				: '')*/
 	    + '</div>'
 
 	)

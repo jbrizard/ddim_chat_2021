@@ -16,3 +16,7 @@
 .like {
     color: red;
 }
+
+.message.is-me .like-container .like-button #like-icon{
+    order: 1;
+}

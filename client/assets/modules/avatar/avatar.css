@@ -21,9 +21,19 @@
 	height: 40px;
 }
 
-.avatar {
-    width: 30px;
+.message .avatar {
+   width: 30px;
     height: 30px;
-    margin-right: 5px;
 	object-fit: cover;
+    z-index: 1;
+    border-radius: 30px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    border: 2px solid rgba(255, 255, 255, 0.24);
 }
+
+.message.is-me .avatar{
+	order: 3;
+}
+

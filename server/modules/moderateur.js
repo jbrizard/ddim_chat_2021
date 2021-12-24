@@ -58,7 +58,7 @@ function handleModerateur(io, message)
 			io.sockets.emit('new_message',
 			{
 				name:'moderateurColere',
-				message:'<span style="color: red">Tu devrais tourner ta langue 7 fois dans ta bouche avant de dire de telles bêtises !</span>'
+				message:'<span style="color: yellow">Tu devrais tourner ta langue 7 fois dans ta bouche avant de dire de telles bêtises !</span>'
 			});
 		   
 	    }
