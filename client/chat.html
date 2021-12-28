@@ -1,109 +1,120 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-		
-		<script src="/socket.io/socket.io.js"></script> <!-- fichier injecté par NodeJS -->
-		<script src="/modules/emojis-picker/lib/emojionearea.js"></script>
-		<script src="https://kit.fontawesome.com/9099ad696d.js" crossorigin="anonymous"></script>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script> <!-- fichier injecté par NodeJS -->
+	<script src="/modules/emojis-picker/lib/emojionearea.js"></script>
+	<script src="https://kit.fontawesome.com/9099ad696d.js" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 
-		<link rel="stylesheet" href="style.css" />
-		<link rel="stylesheet" href="/modules/emojis-picker/lib/emojionearea.min.css" />
-		<link rel="stylesheet" href="/modules/daffy/daffy.css" />
-		<link rel="stylesheet" href="/modules/wizz/wizz.css" />
-		<!--<link rel="stylesheet" href="/modules/basket/basket.css" />-->
-		<link rel="stylesheet" href="/modules/like/like.css" />
-		
-		<link rel="stylesheet" href="/modules/tagUser/tagUser.css" />
-		<link rel="stylesheet" href="/modules/deleteMessage/deleteMessage.css" />
-		
-		<link rel="stylesheet" href="/modules/blague/blague.css" />
-		<link rel="stylesheet" href="/modules/aimGame/aim-game.css" />
-        
-        <link rel="stylesheet" href="/modules/moderateur/moderateur.css" />
-		<link rel="stylesheet" href="/modules/poll/poll.css" />
-		<link rel="stylesheet" href="/modules/scribblio/scribblio.css" />
-		<link rel="stylesheet" href="/modules/replyTo/replyTo.css" />
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="/modules/emojis-picker/lib/emojionearea.min.css" />
+	<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+	<link rel="stylesheet" href="/modules/daffy/daffy.css" />
+	<link rel="stylesheet" href="/modules/wizz/wizz.css" />
+	<!--<link rel="stylesheet" href="/modules/basket/basket.css" />-->
+	<link rel="stylesheet" href="/modules/like/like.css" />
+	<link rel="stylesheet" href="/modules/tagUser/tagUser.css" />
+	<link rel="stylesheet" href="/modules/deleteMessage/deleteMessage.css" />
+	<link rel="stylesheet" href="/modules/blague/blague.css" />
+	<link rel="stylesheet" href="/modules/aimGame/aim-game.css" />
+	<link rel="stylesheet" href="/modules/moderateur/moderateur.css" />
+	<link rel="stylesheet" href="/modules/poll/poll.css" />
+	<link rel="stylesheet" href="/modules/scribblio/scribblio.css" />
+	<link rel="stylesheet" href="/modules/replyTo/replyTo.css" />
+	<link rel="stylesheet" href="/modules/picture/picture.css">
+	<link rel="stylesheet" href="/modules/avatar/avatar.css">
+</head>
 
-		<!-- CSS Module Picture (Envoie d'une image) par abjm-project -->
-		<link rel="stylesheet" href="/modules/picture/picture.css">
-		<!-- CSS Module Avatar (Ajout d'un avatar) par abjm-project -->
-		<link rel="stylesheet" href="/modules/avatar/avatar.css">
-		<!-- Librarie Dropzone (Glisser / Déposer) par abjm-project -->
-		<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-		<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
-	</head>
-	
-	<body>
-		<!-- Dropzone pour le Glisser / Déposer par abjm-project -->
-		<div id="dropzone"></div>
+<body>
 
-		<h1>Le Chat !</h1>
+	<header>
+		<h2 id="chatName">Nom du chat</h2>
+		<label for="listeParticipants" id="nombreParticipants">4</label>
+		<input type="button" id="listeParticipants" name="listeParticipants" value="participant">
+		<input type="button" id="toggleNightMode" value="jour/nuit">
+	</header>
 
-		<!-- module scribblio -->
-		<div id="scribblioContainer">
-			<div id="scribblio">
-				<div id="scribblio-others-mouse-pos"></div>
-			</div>
+	<footer>
+		<label for="files" class="addFile">+</label>
+		<input id="files" style="visibility:hidden;" type="file">
+		<input type="button" id="send-wizz" />
+		<input autofocus type="text" id="message-input" list="lstUsernameTag" placeholder="Écrivez un message..." />
+		<input type="button" id="send-message" value=">" />
+	</footer>
+
+	<!-- <div id="dropzone"></div> -->
+
+	<!-- module scribblio -->
+	<div id="scribblioContainer">
+		<div id="scribblio">
+			<div id="scribblio-others-mouse-pos"></div>
 		</div>
-		<div class="scribblioControls">
-			<div class="scribblioItem">
-				<label for="brushSize">Taille du pinceau</label>
-				<input type="range" name="brushSize" id="brushSize" min="2" max="20">
-			</div>
+	</div>
+	<div class="scribblioControls">
+		<div class="scribblioItem">
+			<label for="brushSize">Taille du pinceau</label>
+			<input type="range" name="brushSize" id="brushSize" min="2" max="20">
 		</div>
-		<div class="scribblioInfos">
-			<p id="wordToFind">Le mot à faire deviner est : <span style="font-weight: bold; color: red;"></span></p>
-			<p style="border-top: 1px solid black; padding-top: 10px;">Clic gauche : dessiner</p>
-			<p>Clic droit : effacer</p>
-			<p style="border-top: 1px solid black; padding-top: 10px;">Liste des utilisateurs</p>
-			<div class="playerList"></div>
-		</div>
-		<!-- fin module scribblio -->
-		
-		<!-- module basket -- >
+	</div>
+	<div class="scribblioInfos">
+		<p id="wordToFind">Le mot à faire deviner est : <span style="font-weight: bold; color: red;"></span></p>
+		<p style="border-top: 1px solid black; padding-top: 10px;">Clic gauche : dessiner</p>
+		<p>Clic droit : effacer</p>
+		<p style="border-top: 1px solid black; padding-top: 10px;">Liste des utilisateurs</p>
+		<div class="playerList"></div>
+	</div>
+	<!-- fin module scribblio -->
+
+	<!-- module basket -- >
 		<div id="basket">
 			<div id="others-mouse-pos"></div>
 		
 			<div class="ball"></div>
 		</div>
 		<!-- fin module basket -->
-		
-		<div id="chat">
-		
-			<div id="tools">
-				<input type="button" id="send-wizz"/>
-			</div>
-			
-			<div id="messages">
-				
-			</div>
 
-			<div id="file">
-				<!-- <div> par abjm project -->
-				<div id="sendImage">
-					<!-- Bouton pour envoyer une image -->
-					<button id="btn">Envoyer une image</button>
-					<input type="file" id="image-input" accept="image/png, image/jpeg"/>
+	<div id="jeuxContainer">
+		<button class="start-aim-game"><i class="fas fa-bullseye"></i> Aim Game</button>
+	</div>
 
-					<!-- Bouton pour ajouter une icône -->
-					<button id="btn-avatar">Changer d'avatar</button>
-					<input type="file" id="avatar-input" accept="image/png, image/jpeg"/>
-				</div>
-				<!-- </div> par abjm project -->
-			</div>
-				
-			<p id="replyToText"></p>
-			
-			<input autofocus type="text" id="message-input" list="lstUsernameTag" />
-			<input type="button" id="send-message" value="Envoyer" />
+	<div id="chat">
+
+		<div id="tools">
 		</div>
+
+		<div id="messages">
+
+		</div>
+
+		<!-- <div id="file"> -->
+			<!-- <div> par abjm project -->
+			<!-- <div id="sendImage"> -->
+				<!-- Bouton pour envoyer une image -->
+				<!-- <button id="btn">Envoyer une image</button>
+				<input type="file" id="image-input" accept="image/png, image/jpeg" /> -->
+
+				<!-- Bouton pour ajouter une icône -->
+				<!-- <button id="btn-avatar">Changer d'avatar</button>
+				<input type="file" id="avatar-input" accept="image/png, image/jpeg" />
+			</div> -->
+			<!-- </div> par abjm project -->
+		<!-- </div> -->
+
+		<p id="replyToText"></p>
+
+
+	</div>
+
+	<div id="participantsContainer">
 		
-		<!--
+	</div>
+
+	<!--
         <div id="basket-scores">
 			<div id="current-player"></div>
 			<div id="stats">
@@ -112,45 +123,49 @@
 		</div>
 
 		<audio id="basket-bounce" src="modules/basket/bounce.mp3" autostart="0"></audio>-->
-		
-		<div id="features">
-			<h2>Plugins</h2>
-			<ul>
-				<li><strong>Emojis :</strong> exprime tes sentiments, déclare ta flamme...</li>
-				<li><strong>Youtube :</strong> partage tes vidéos préférées avec "yt MOTCLE"</li>
-				<li><strong>Konami :</strong> met l'ambiance avec le konami code</li>
-				<li><strong>Wizz :</strong> réveille tes potes !</li>
-				<li><strong>Annuaire :</strong> vole des données personnelles en tapant "/infos ..."</li>
-				<li><strong>Historique :</strong> souviens toi du bon vieux temps en remontant dans l'historique</li>
-				<li><strong>Basket :</strong> bat le record de touche sans que le ballon touche le sol</li>
-			</ul>
-		</div>
 
-		<div class="aim-game">
-			<p>Soit le plus rapide, et fait le plus de points en cliquant sur les cibles qui apparaissent !</p>
-			<div class="stats-aim-game">
-				<div class="timer"><p>Timer : </p> </div>
-				<div class="compteur"><p>Score : </p></div>
+	<!-- <div id="features">
+		<h2>Plugins</h2>
+		<ul>
+			<li><strong>Emojis :</strong> exprime tes sentiments, déclare ta flamme...</li>
+			<li><strong>Youtube :</strong> partage tes vidéos préférées avec "yt MOTCLE"</li>
+			<li><strong>Konami :</strong> met l'ambiance avec le konami code</li>
+			<li><strong>Wizz :</strong> réveille tes potes !</li>
+			<li><strong>Annuaire :</strong> vole des données personnelles en tapant "/infos ..."</li>
+			<li><strong>Historique :</strong> souviens toi du bon vieux temps en remontant dans l'historique</li>
+			<li><strong>Basket :</strong> bat le record de touche sans que le ballon touche le sol</li>
+		</ul>
+	</div> -->
+
+	<div class="aim-game">
+		<p>Soit le plus rapide, et fait le plus de points en cliquant sur les cibles qui apparaissent !</p>
+		<div class="stats-aim-game">
+			<div class="timer">
+				<p>Timer : </p>
 			</div>
-			<div class="cibles-container">
-				<button class="start-game">Start</button>
+			<div class="compteur">
+				<p>Score : </p>
 			</div>
 		</div>
-		<button class="start-aim-game"><i class="fas fa-bullseye"></i> Aim Game</button>	
-		
-		<script type="text/javascript" src="chat.js"></script>
-		<script type="text/javascript" src="/modules/youtube/youtube.js"></script>
-		<script type="text/javascript" src="/modules/konami/konami.js"></script>
-		<!--<script type="text/javascript" src="modules/basket/basket.js"></script>
+		<div class="cibles-container">
+			<button class="start-game">Start</button>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="chat.js"></script>
+	<script type="text/javascript" src="/modules/youtube/youtube.js"></script>
+	<script type="text/javascript" src="/modules/konami/konami.js"></script>
+	<!--<script type="text/javascript" src="modules/basket/basket.js"></script>
 		<script src="/modules/emojis-picker/emojis-picker.js"></script>-->
-		<script type="text/javascript" src="./modules/tagUser/tagUser.js"></script>
-		<script type="text/javascript" src="./modules/deleteMessage/deleteMessage.js"></script>
-		<script type="text/javascript" src="/modules/poll/poll.js"></script>
-		<script type="text/javascript" src="modules/scribblio/scribblio.js"></script>
-		<script type="text/javascript" src="/modules/replyTo/replyTo.js"></script>
-		<!-- Module Picture (Envoie d'une image) par abjm-project -->
-		<script type="text/javascript" src="/modules/picture/picture.js"></script>
-		<!-- Module Avatar (Ajout d'un avatar) par abjm-project -->
-		<script type="text/javascript" src="/modules/avatar/avatar.js"></script>
-	</body>
+	<script type="text/javascript" src="./modules/tagUser/tagUser.js"></script>
+	<script type="text/javascript" src="./modules/deleteMessage/deleteMessage.js"></script>
+	<script type="text/javascript" src="/modules/poll/poll.js"></script>
+	<script type="text/javascript" src="modules/scribblio/scribblio.js"></script>
+	<script type="text/javascript" src="/modules/replyTo/replyTo.js"></script>
+	<!-- Module Picture (Envoie d'une image) par abjm-project -->
+	<script type="text/javascript" src="/modules/picture/picture.js"></script>
+	<!-- Module Avatar (Ajout d'un avatar) par abjm-project -->
+	<script type="text/javascript" src="/modules/avatar/avatar.js"></script>
+</body>
+
 </html>

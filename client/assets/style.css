@@ -4,7 +4,7 @@ html, body {
 	padding:0;
 	overflow:hidden;
 }
-body {
+/* body {
 	background:#888;
 	color:#555;
 	text-align:center;
@@ -19,8 +19,8 @@ h1 {
 	margin:0 auto;
 	width:70%;
 	max-width:500px;
-	height: calc(100% - 80px - 40px - 60px); /* 80px = marge haute, 40px = marge basse, 60px = padding vertical */
-	padding:30px;
+	height: calc(100% - 80px - 40px - 60px); 
+	/*padding:30px;
 	background:#fff;
 	border-radius:14px;
 	font-size:0;
@@ -28,7 +28,7 @@ h1 {
 	position: relative;
 }
 #messages {
-	height:calc(100% - 15px - 60px); /* 15px = padding-top, 60px = formulaire en dessous  */
+	height:calc(100% - 15px - 60px); 
 	padding-top:15px;
 	width:100%;
 	overflow-y:scroll;
@@ -54,7 +54,7 @@ h1 {
 	display:inline-block;
 	border:solid 2px #888;
 	width:calc(100% - 144px);
-	padding:0 20px;
+	/* padding:0 20px;
 	height:31px;
 	border-top-left-radius:8px;
 	border-bottom-left-radius:8px;
@@ -185,4 +185,32 @@ body>h1:hover {
   	position: relative;
   	overflow: hidden;
 	width: 100%;
+} */ 
+
+/* DEBUG */
+.nightMode{
+	background-color: black;
+}
+
+.addFile{
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.16, rgb(207, 207, 207)), color-stop(0.79, rgb(252, 252, 252)));
+	background-image: -moz-linear-gradient(center bottom, rgb(207, 207, 207) 16%, rgb(252, 252, 252) 79%);
+	background-image: linear-gradient(to top, rgb(207, 207, 207) 16%, rgb(252, 252, 252) 79%); 
+	padding: 3px;
+	border: 1px solid #000;
+	color: black;
+	text-decoration: none;
+}
+
+#participantsContainer{
+	border: 1px black;
+	background-color: white;;
+	height: 100vh;
+	position: absolute;
+	top: 0;
+	width: 100vw;
+	left: 100vw
 }

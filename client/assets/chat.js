@@ -20,6 +20,7 @@ socket.on('wizz', receiveWizz);
 socket.on('update', updateMessage);
 socket.on('tagged', receiveTagged);
 socket.on('count', updateMessage);
+socket.on('update_user_list', updateUserList);
 
 // Action quand on clique sur le bouton "Envoyer"
 $('#send-message').click(sendMessage);
@@ -370,3 +371,20 @@ function showUserReplyingTo()
 	// Appel de la fonction montrant au client à qui il va répondre
 	displayAnsweredMessage(userReplyTo);
 }
+
+$('#toggleNightMode').click(function(){
+	$('body').toggleClass("nightMode");
+})
+
+$('#listeParticipants').click(function(){
+	$('#participantsContainer').animate({left: '30vw'}, "fast");
+})
+
+function updateUserList(userList)
+{
+	$('#participantsContainer').empty();
+	userList.userList.forEach(element => {
+		$('#participantsContainer').append(
+			'<div class="userElem"><p>' + element + '</div></p>')
+	});
+} 	

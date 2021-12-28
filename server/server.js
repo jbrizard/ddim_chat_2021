@@ -24,6 +24,7 @@ var moderateur = require('./modules/moderateur.js');
 var poll = require('./modules/poll.js');
 var scribblio = require('./modules/scribblio.js');
 var takover = require('./modules/takover.js');
+var userList = require('./modules/userList.js');
 const { StringDecoder } = require('string_decoder');
 
 // Initialisation du serveur HTTP
@@ -82,6 +83,9 @@ io.sockets.on('connection', function(socket)
 
 		// Ajoute le client au scribblio
 		scribblio.addClient(socket);
+
+		// Ajoute l'user à la liste des utilisateurs
+		userList.handleUserList(io, name);
 	});
 
 	// Réception d'un message
