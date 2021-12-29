@@ -53,18 +53,17 @@
 
 /* Bouton wizz */
 #send-wizz{
-	border:solid 2px #888;
-    background:center no-repeat url("../wizz/wizz.svg") #888;
+	border: 0;
+    background: center no-repeat url("../wizz/wizz.svg") #fff;
     background-size: 50%;
-	width:60px;
-	padding:5px 0;
-    margin: 10px 0;
+	width: 5vw;
 	border-radius: 5px;
 	cursor:pointer;
 	transition:all .4s;
 }
 
-#send-wizz:disabled{
-    background: center no-repeat url("../wizz/wizz.svg") rgb(221, 221, 221);
-    border:solid 2px rgb(44, 42, 42);
+@media (max-width: 500px) {
+	#send-wizz{
+		width: 15vw;
+	}
 }

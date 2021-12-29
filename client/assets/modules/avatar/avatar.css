@@ -1,29 +1,65 @@
 /* ------------------- TRAITEMENT ICONE AVATAR ---------------------- */
 
 #btn-avatar{
-	background-color: #fff;
-  	border: 3px solid #777;
-  	color: #777;
-  	padding: 10px 10px;
-  	border-radius: 10px;
-  	font-size: 12px;
-  	font-weight: bold;
-	width: 160px;
+	border: 0;
+	width: 8%;
+	height: 5vh;
+	cursor: pointer;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	background-color: transparent;
+}
+
+#btn-avatar>img{
+	width: 50%;
+	cursor: pointer;
 }
 
 #avatar-input{
-	right: 0;
+	left: 8%;
   	top: 0;
   	opacity: 0;
-  	position: absolute;
+	position: absolute;
   	font-size: 90px;
-	width: 166px;
-	height: 40px;
+	width: 8%;
+	height: 5vh;
 }
 
-.avatar {
-    width: 30px;
-    height: 30px;
-    margin-right: 5px;
-	object-fit: cover;
+.avatar{
+	width: 2.5vw;
+	height: 2.5vw;
+	border-radius: 2.5vw;
+}
+
+.message.is-me>.avatar{
+	margin-left: 1vw;
+}
+
+.message>.avatar{
+	margin-right: 1vw;
+}
+
+@media (max-width: 500px) {
+	#btn-avatar, #avatar-input{
+		width: 15vw;
+	}
+
+	#avatar-input{
+		left: 15vw;
+	}
+
+	.avatar{
+		width: 8vw;
+		height: 8vw;
+		border-radius: 8vw;
+	}
+
+	.message.is-me>.avatar{
+		margin-left: 3vw;
+	}
+	
+	.message>.avatar{
+		margin-right: 3vw;
+	}
 }

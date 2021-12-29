@@ -11,6 +11,7 @@
     -webkit-box-shadow: 0px 0px 0px 0px #000000; 
     box-shadow: 0px 0px 0px 0px #000000;
     opacity: 0;
+    display: none;
 }
 
 #scribblioContainer.visible {
@@ -42,6 +43,7 @@
     top: 0;
     background-color: white;
     z-index: -1;
+    display: none;
 }
 
 #scribblioContainer.active #scribblio {
@@ -65,6 +67,7 @@
     border-radius: 10px;
     -webkit-box-shadow: 0px 0px 20px 0px #000000; 
     box-shadow: 0px 0px 20px 0px #000000;
+    display: none;
 }
 
 .scribblioControls.active {
@@ -78,6 +81,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    display: none;
 }
 
 .scribblioInfos {
@@ -98,6 +102,7 @@
     border-radius: 10px;
     -webkit-box-shadow: 0px 0px 20px 0px #000000; 
     box-shadow: 0px 0px 20px 0px #000000;
+    display: none;
 }
 
 .scribblioInfos.active {
@@ -111,4 +116,5 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    display: none;
 }

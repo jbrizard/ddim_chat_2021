@@ -12,6 +12,7 @@
 		<script src="https://kit.fontawesome.com/9099ad696d.js" crossorigin="anonymous"></script>
 
 		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="responsive-smartphone.css" />
 		<link rel="stylesheet" href="/modules/emojis-picker/lib/emojionearea.min.css" />
 		<link rel="stylesheet" href="/modules/daffy/daffy.css" />
 		<link rel="stylesheet" href="/modules/wizz/wizz.css" />
@@ -74,33 +75,32 @@
 		<!-- fin module basket -->
 		
 		<div id="chat">
-		
-			<div id="tools">
-				<input type="button" id="send-wizz"/>
-			</div>
 			
 			<div id="messages">
 				
 			</div>
 
 			<div id="file">
-				<!-- <div> par abjm project -->
-				<div id="sendImage">
-					<!-- Bouton pour envoyer une image -->
-					<button id="btn">Envoyer une image</button>
-					<input type="file" id="image-input" accept="image/png, image/jpeg"/>
+				<!-- Bouton pour envoyer une image -->
+				<button id="btn"><img src="img.png" alt=""></button>
+				<input type="file" id="image-input" accept="image/png, image/jpeg"/>
 
-					<!-- Bouton pour ajouter une icône -->
-					<button id="btn-avatar">Changer d'avatar</button>
-					<input type="file" id="avatar-input" accept="image/png, image/jpeg"/>
-				</div>
-				<!-- </div> par abjm project -->
+				<!-- Bouton pour ajouter une icône -->
+				<button id="btn-avatar"><img src="avatar.png" alt=""></button>
+				<input type="file" id="avatar-input" accept="image/png, image/jpeg"/>
+
+				<button class="start-aim-game"><i class="fas fa-bullseye"></i></button>
+
+				<div id="tools">
+					<input type="button" id="send-wizz"/>
+				</div> 
 			</div>
 				
 			<p id="replyToText"></p>
-			
-			<input autofocus type="text" id="message-input" list="lstUsernameTag" />
-			<input type="button" id="send-message" value="Envoyer" />
+			<div id="barre-msg">
+				<input autofocus type="text" id="message-input" list="lstUsernameTag" placeholder="Tapez un message"/>
+				<input type="button" id="send-message" value="➜" />
+			</div>
 		</div>
 		
 		<!--
@@ -113,6 +113,7 @@
 
 		<audio id="basket-bounce" src="modules/basket/bounce.mp3" autostart="0"></audio>-->
 		
+
 		<div id="features">
 			<h2>Plugins</h2>
 			<ul>
@@ -135,8 +136,7 @@
 			<div class="cibles-container">
 				<button class="start-game">Start</button>
 			</div>
-		</div>
-		<button class="start-aim-game"><i class="fas fa-bullseye"></i> Aim Game</button>	
+		</div>	
 		
 		<script type="text/javascript" src="chat.js"></script>
 		<script type="text/javascript" src="/modules/youtube/youtube.js"></script>

@@ -101,5 +101,4 @@ $('#dropzone').on('drop', function()
 function sendImageToServer(image) 
 {
     socket.emit('image', image);
-    console.log(image)
 }

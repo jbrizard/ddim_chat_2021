@@ -1,0 +1,73 @@
+@media (max-width: 500px) {
+	body{
+		overflow: hidden;
+	}
+	
+	h1 {
+		margin: 0;
+		padding: 2vh 0;
+		text-align: center;
+		font-size: 6vw;
+		height: 5vh;
+	}
+
+	#chat {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 95%;
+		border-radius: 0;
+	}
+
+	#messages{
+		height: 75vh;
+	}
+
+	#file{
+		height: 5vh;
+		width: 90%;
+		margin: auto;
+	}
+
+	#barre-msg{
+		width: 90%;
+		height: 5vh;
+		margin: auto auto 2vh auto;
+	}
+
+	#message-input{
+		height: 5vh;
+		font-size: 3vw;
+	}
+
+	#send-message{
+		width: 4vh;
+		height: 4vh;
+		border-radius: 4vh;
+	}
+
+	#tools{
+		width: 15vw;
+	}
+
+	#send-wizz{
+		width: 100%;
+	}
+
+	/* ---------------- MSG ----------------- */
+
+	.message-container{
+		padding: 2vh 4vw;
+		border-radius: 1vw;
+		font-size: 1vw;
+		max-width: 60%;
+	}
+
+	#messages .message .user {
+		font-size: 4vw;
+	}
+
+	.message-text{
+		font-size: 4vw;
+	}
+}

@@ -25,17 +25,24 @@
 }
 
 .start-aim-game {
-    background: none;
-    border-radius: 5rem;
-
-    border: none;
-    background-color: rgb(0, 132, 255);
-    color: white;
-
-    font-size: 1.2rem;
-    padding: .5rem 1rem;
+    border: 0;
+    background-color: transparent;
+    color: #2A63FF;
+    width: 8%;
+    height: 5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
 }
 
+.start-aim-game>i{
+    padding: 0;
+    margin: 0;
+    font-size: 1.5vw;
+}
 
 .display-aim-game {
     display: flex;
@@ -160,4 +167,14 @@
     color: rgb(0, 132, 255);
     font-weight: normal;
     margin: 0 .5rem 0 0;
+}
+
+@media (max-width: 500px) {
+	.start-aim-game{
+		width: 10vw;
+	}
+
+    .start-aim-game>i{
+        font-size: 5vw;
+    }
 }
