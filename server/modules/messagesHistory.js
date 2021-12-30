@@ -29,7 +29,7 @@ function getMessagesHistory(socket, fs)
                 // Envoi de chaque ancien message
                 jsonData.messages.forEach((el) =>
                 {
-                    socket.emit('new_message', {name:el.auteur, message:el.message});
+                    socket.emit('new_message', {name:el.auteur, message:el.message, avatar: el.avatar});
                 }
                 );
             }
@@ -55,7 +55,8 @@ function addMessageToHistory(socket, fs, message)
         var jsonData = JSON.parse(data);
         var newMessage = {
             auteur: socket.name,
-            message: message
+            message: message,
+            avatar: socket.avatar
         }
 
         // Si le fichier json est au bon format

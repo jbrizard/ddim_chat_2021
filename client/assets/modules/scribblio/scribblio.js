@@ -42,7 +42,7 @@ socket.on('scribblio_start_find', startFind);
 socket.on('scribblio_end_game', endGame);
 
 /**
- * Méthode appelée lorsque la souris bouge
+ * Méthode appelée lorsque la souris bouge ou que l'utilisateur appuie sur son écran (mobile)
  */
 let posX;
 let posY;
@@ -175,7 +175,8 @@ function hideWord(data)
  */
 function startDraw(data)
 {
-	$('#scribblioContainer').addClass('visible');
+	$('.posabs-bottom').addClass('hide');
+	$('#scribblioContainer, #drawmodule').addClass('visible');
 	$('#scribblioContainer, .scribblioControls, .scribblioInfos').addClass('active');
 	$('#wordToFind span').html(data.wordToFind);
 
@@ -189,7 +190,7 @@ function startDraw(data)
  */
 function startFind()
 {
-	$('#scribblioContainer').addClass('visible');
+	$('#scribblioContainer, #drawmodule').addClass('visible');
 
 	setTimeout(() => {
 		resize();
@@ -201,7 +202,8 @@ function startFind()
  */
 function endGame()
 {
-	$('#scribblioContainer').removeClass('visible');
+	$('.posabs-bottom').removeClass('hide');
+	$('#scribblioContainer, #drawmodule').removeClass('visible');
 	$('#scribblioContainer, .scribblioControls, .scribblioInfos').removeClass('active');
 
 	setTimeout(() => {

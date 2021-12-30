@@ -1,0 +1,35 @@
+/* Module Like */
+.like-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}   
+
+.like-count {
+    padding: 0 0.25rem 0 0; 
+    opacity: 0;
+}
+
+.like-button {
+    background-color: #E9E9EB;
+    border: 3px solid white;
+    border-radius: 2rem;
+    padding: 5px;
+    margin-top: -1rem;
+    margin-left: -1rem;
+}
+
+.like-button img {
+    width: 1rem;
+    filter: grayscale(.7);
+    transition: all .1s;
+}
+
+.like img {
+    filter: grayscale(0);
+}
+
+.is-me .like-button {
+    background-color: #0078FF;
+    margin-left: 0;
+}

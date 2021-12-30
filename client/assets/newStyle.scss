@@ -1,0 +1,671 @@
+$light-main-background: #FFFFFF;
+$light-topmenu_background: #F1F1F2;
+$light-topmenu_stroke: #A8A8A8;
+$light-botmenu_background: #D6D7DD;
+$light-bubble_other_background: #E9E9EB;
+$light-bubble_other_text: #000000;
+$light-bubble_user_background: #0078FF;
+$light-bubble_user_text: #FFFFFF;
+$light-other_name_text: #909093;
+$light-messagebar_stroke: #A8A8A8;
+$light-messagebar_text: #C5C5C7;
+$light-messagebar_button_background: #0078FF;
+$light-messagebar_button_icon: #FFFFFF;
+$light-module1_background: #F7D0A0;
+$light-module2_background: #FF0000;
+$light-module3_background: #FFFFFF;
+$light-module4_background: #D7AF70;
+$light-module5_background: #EEEEEE;
+$light-module6_background: #FF838C;
+$light-module7_background: #5C9AE0;
+$light-module8_background: #AC6ED9;
+
+$dark-main-background: #000002;
+$dark-topmenu_background: #101010;
+$dark-botmenu_background: #1A1C1E;
+$dark-bubble_other_background: #26262A;
+$dark-bubble_other_text: #FFFFFF;
+$dark-bubble_user_background: #19A3FB;
+$dark-bubble_user_text: #FFFFFF;
+$dark-other_name_text: #909093;
+$dark-messagebar_background: #1C1C1E;
+$dark-messagebar_stroke: #2F2F31;
+$dark-messagebar_text: #A4A3A6;
+$dark-messagebar_button_background: #868E99;
+$dark-messagebar_button_icon: #1C1C1E;
+$dark-module1_background: #F7D0A0;
+$dark-module2_background: #FF0000;
+$dark-module3_background: #FFFFFF;
+$dark-module4_background: #D7AF70;
+$dark-module5_background: #EEEEEE;
+$dark-module6_background: #FF838C;
+$dark-module7_background: #5C9AE0;
+$dark-module8_background: #AC6ED9;
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+#features {
+    display: none;
+}
+
+#aimmodule{
+    display: none;
+}
+
+#modulesList.desktop {
+    display: none;
+}
+
+.menu-top{
+    background-color: $light-topmenu_background;
+    border-bottom: 1px solid $light-topmenu_stroke;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 10px;
+    z-index: 9;
+
+    img{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 4vh;
+        margin-bottom: 5px;
+        
+    }
+    h5{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #dark-toggle{
+        position: absolute;
+        top: 20px;
+        right: 23px;
+        width: 35px;
+        height: auto;
+        cursor: pointer;
+    }
+}
+
+.posabs-bottom{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #ffffff;
+    transition: opacity .2s;
+    height: 15vh;
+
+    &.hide {
+        opacity: 0;
+    }
+
+    #message-input-container {
+        position: relative;
+        width: 85%;
+        height: 35px;
+        border: 1px solid $light-messagebar_stroke;
+        border-radius: 25px;
+        margin-bottom: 10px;
+    
+    
+        #message-input {
+            width: calc(100% - 2em);
+            height: 100%;
+            padding: 10px;
+            border-radius: 25px;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            border: none;
+        }
+    
+        #send-message {
+            position: absolute;
+            top: 50%;
+            right: 5px;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 28px;
+            border-radius: 25px;
+            border: none;
+            padding: 0;
+            background-color: $light-messagebar_button_background;
+    
+            display: flex;
+            align-items: center;
+            justify-items: center;
+        }
+        
+        i{
+            margin: auto;
+            color: $light-messagebar_button_icon;
+        }
+    }
+
+    .menu-bottom{
+        background-color: $light-botmenu_background;
+        width: 100%;
+        height: 60px;
+        display: flex;
+    }
+}
+
+#modulesList{
+    width: 100%;
+    text-align: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .module{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 30px;
+        border-radius: 25px;
+        margin: 0 3px;
+        overflow: hidden;
+
+        img {
+            height: 80%;
+        }
+    }
+
+    .drawModuleButton{
+        background-color: $light-module1_background;
+    }
+    .youtubeModuleButton{
+        background-color: $light-module2_background;
+    }
+    .emojiModuleButton{
+        background-color: $light-module3_background;
+    }
+    .picModuleButton{
+        background-color: $light-module4_background;
+        position: relative;
+
+        input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+    }
+    .send-wizz{
+        background-color: $light-module5_background;
+    }
+    .blagueModuleButton{
+        background-color: $light-module6_background;
+    }
+    .meteoModuleButton{
+        background-color: $light-module7_background;
+    }
+
+    .infosClasseModuleButton{
+        background-color: $light-module8_background;
+    }
+}
+
+
+#chat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 75vh;
+    overflow-y: scroll;
+}
+
+#messages{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    // justify-content: flex-end;
+    align-items: flex-start;
+    overflow-y: scroll;
+
+    .is-me{
+        // background-color: blue;
+        align-self: flex-end;
+        flex-direction: row-reverse;
+
+        .les-messages{
+            background-color: $light-bubble_user_background;
+            border-radius: 25px;
+            color: $light-bubble_user_text;
+            min-height: 33px;
+            padding: 10px;
+        }
+        .avatar-container{
+            align-self: flex-end;
+            margin-right: 0px;
+            margin-left: 10px;
+            padding-bottom: 12px;
+            height: 33px;
+            width: 33px;
+
+            img {
+                width: 100%;
+                object-fit: contain;
+            }
+        }
+        .like-container{
+            width: 20px;
+            height: 20px;
+            align-self: flex-start;
+            margin-top: 15px;
+        }
+    }
+
+    .les-messages{
+        background-color: $light-bubble_other_background;
+        border-radius: 25px;
+        color: $light-bubble_other_text;
+        min-height: 33px;
+        padding: 10px;
+        word-break: break-all;
+
+        .message-text {
+            img {
+                max-width: 200px !important;
+                border-radius: 20px;
+            }
+
+            iframe {
+                width: 100%;
+                border-radius: 20px;
+            }
+        }
+    }
+
+    .user{
+        margin-bottom: 5px;
+        font-size: 10px;
+        margin-left: 15px;
+        color: grey;
+    }
+
+    .message{
+        display: flex;
+        position: relative;
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .message-container {
+        max-width: 70%;
+    }
+    
+    .avatar-container{
+        align-self: flex-end;
+        margin-right: 10px;
+        padding-bottom: 12px;
+        height: 33px;
+            width: 33px;
+
+            img {
+                width: 100%;
+            }
+    }
+
+    .btn-setting-chat {
+        align-self: flex-end;
+        margin: 0;
+    }
+
+    .like-container{
+        align-self: flex-start;
+        margin-top: 15px;
+    }
+}
+
+#drawmodule {
+    .scribblioInfos {
+        flex-direction: row;
+        top: -100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90vw;
+        height: 10vh;
+        max-height: none;
+        min-height: auto;
+        overflow-x: scroll;
+
+        > p, .playerList {
+            display: none;
+        }
+
+        #wordToFind {
+            display: block;
+        }
+
+        &.active {
+            top: 15px;
+        }
+    }
+
+    .scribblioControls {
+        &.active {
+            bottom: 20px;
+        }
+    }
+
+    #scribblioContainer {
+        &.visible {
+            width: 60vw;
+            height: 60vh;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            -webkit-box-shadow: 0px 0px 20px 0px #000000;
+            box-shadow: 0px 0px 20px 0px #000000;
+        }
+    }
+}
+
+// Smartphone paysage
+@media only screen and (min-width : 321px) and (orientation: landscape) {
+    #drawmodule {
+        .scribblioInfos {
+            flex-direction: column;
+            top: 50%;
+            right: -100%;
+            transform: translateY(-50%);
+            width: 15vw;
+            max-height: 90vh;
+            min-height: 60vh;
+            overflow-y: scroll;
+            top: 50%;
+            left: auto;
+
+            > p, .playerList {
+                display: block;
+            }
+
+            &.active {
+                right: 5vw;
+                top: 50%;
+            }
+        }
+
+        .scribblioControls {
+            &.active {
+                bottom: 10px;
+            }
+        }
+
+        .scribblioContainer {
+            &.visible {
+                width: 60vw;
+                height: 60vh;
+            }
+        }
+    }
+
+    .menu-top {
+        min-height: 60px;
+
+        .avatarname-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+
+            img {
+                min-height: 30px;
+                margin-bottom: 0;
+                margin-right: 10px;
+            }
+        }
+    }
+
+    #chat {
+        height: 70vh;
+    }
+
+    .posabs-bottom {
+        height: 20vh;
+
+        #message-input-container {
+            height: 25px;
+
+            #send-message {
+                height: 25px;
+                width: 25px;
+                right: 0;
+                cursor: pointer;
+            }
+        }
+
+        #modulesList {
+            justify-content: space-evenly;
+            
+            .module {
+                height: 25px;
+                width: 50px;
+            }
+        }
+    }
+}
+
+
+// PC
+@media only screen and (min-width : 1224px){
+    #drawmodule {
+        .scribblioInfos {
+            flex-direction: column;
+            top: 50%;
+            right: -100%;
+            transform: translateY(-50%);
+            width: 15vw;
+            max-height: 90vh;
+            min-height: 60vh;
+            overflow-y: scroll;
+            top: 50%;
+            left: auto;
+
+            > p, .playerList {
+                display: block;
+            }
+
+            &.active {
+                right: 5vw;
+                top: 50%;
+            }
+        }
+
+        .scribblioControls {
+            &.active {
+                bottom: 10px;
+            }
+        }
+
+        .scribblioContainer {
+            &.visible {
+                width: 60vw;
+                height: 60vh;
+            }
+        }
+    }
+
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+        padding: 0 5vw;
+    }
+
+    .bodyWrapper {
+        width: 50vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        border: 1px solid grey;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    #chat {
+        margin: 0;
+        height: 80vh;
+        width: 100%;
+    }
+
+    .menu-top {
+        position: initial;
+    }
+
+    .posabs-bottom {
+        position: initial;
+        height: 10vh;
+    }
+
+    .posabs-bottom .menu_module .module {
+        width: 8%;
+        height: 70%;
+        cursor: pointer;
+    }
+
+    .posabs-bottom .menu-bottom {
+        display: none;
+    }
+
+    #modulesList.desktop {
+        display: flex;
+        flex-direction: column;
+        width: 15vw;
+        max-height: 80vh;
+
+        border: 1px solid grey;
+        border-radius: 15px;
+        overflow: hidden;
+        padding: 10px 5px;
+
+        .module {
+            width: 5vw;
+            height: 3vw;
+            margin: 20px 0;
+            cursor: pointer;
+        }
+    }
+
+    #features {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 15vw;
+        height: 60vh;
+        text-align: center;
+
+        border: 1px solid grey;
+        border-radius: 15px;
+        overflow: hidden;
+        padding: 10px 5px;
+
+        h2, li {
+            margin: 10px 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+    }
+}
+
+input {
+    outline: none;
+}
+
+.dark {
+    background-color: $dark-main-background;
+
+    .menu-top {
+        background-color: $dark-topmenu_background;
+        border-bottom: 0px;
+        
+        #userName {
+            color: white;
+        }
+    }
+    .posabs-bottom {
+        background-color: $dark-main-background;
+
+        #message-input-container {
+            border: 1px solid $dark-messagebar_stroke;
+            background-color: $dark-messagebar_background;
+        }
+
+        #message-input {
+            background-color: $dark-messagebar_background;
+            color: $dark-messagebar_text;
+        }
+
+        // #send-message {
+        //     background-color: $dark-messagebar_button_background !important;
+        //     .fas {
+        //         color: $dark-messagebar_background !important;
+        //     }
+        // }
+
+        .menu-bottom {
+            background-color: $dark-messagebar_background;
+        }
+    }
+
+    .is-me {
+        .les-messages {
+            background-color: $dark-bubble_user_background !important;
+        }
+        .like-button {
+            background-color: $dark-bubble_user_background !important;
+            border: 3px solid $dark-main-background;
+        }
+    }
+
+    .les-messages {
+        background-color: $dark-bubble_other_background !important;
+
+        .message-text {
+            color: white;
+        }
+    }
+    
+    .like-button {
+        background-color: $dark-bubble_other_background !important;
+        border: 3px solid $dark-main-background !important;
+    }
+
+    #features {
+        color: white;
+    }
+    
+    #modulesList {
+        color: white;
+    }
+}
+

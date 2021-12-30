@@ -1,0 +1,523 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+#features {
+  display: none;
+}
+
+#aimmodule {
+  display: none;
+}
+
+#modulesList.desktop {
+  display: none;
+}
+
+.menu-top {
+  background-color: #F1F1F2;
+  border-bottom: 1px solid #A8A8A8;
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 10px;
+  z-index: 9;
+}
+.menu-top img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4vh;
+  margin-bottom: 5px;
+}
+.menu-top h5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.menu-top #dark-toggle {
+  position: absolute;
+  top: 20px;
+  right: 23px;
+  width: 35px;
+  height: auto;
+  cursor: pointer;
+}
+
+.posabs-bottom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: #ffffff;
+  transition: opacity 0.2s;
+  height: 15vh;
+}
+.posabs-bottom.hide {
+  opacity: 0;
+}
+.posabs-bottom #message-input-container {
+  position: relative;
+  width: 85%;
+  height: 35px;
+  border: 1px solid #A8A8A8;
+  border-radius: 25px;
+  margin-bottom: 10px;
+}
+.posabs-bottom #message-input-container #message-input {
+  width: calc(100% - 2em);
+  height: 100%;
+  padding: 10px;
+  border-radius: 25px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  border: none;
+}
+.posabs-bottom #message-input-container #send-message {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 25px;
+  border: none;
+  padding: 0;
+  background-color: #0078FF;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+.posabs-bottom #message-input-container i {
+  margin: auto;
+  color: #FFFFFF;
+}
+.posabs-bottom .menu-bottom {
+  background-color: #D6D7DD;
+  width: 100%;
+  height: 60px;
+  display: flex;
+}
+
+#modulesList {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+#modulesList .module {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 30px;
+  border-radius: 25px;
+  margin: 0 3px;
+  overflow: hidden;
+}
+#modulesList .module img {
+  height: 80%;
+}
+#modulesList .drawModuleButton {
+  background-color: #F7D0A0;
+}
+#modulesList .youtubeModuleButton {
+  background-color: #FF0000;
+}
+#modulesList .emojiModuleButton {
+  background-color: #FFFFFF;
+}
+#modulesList .picModuleButton {
+  background-color: #D7AF70;
+  position: relative;
+}
+#modulesList .picModuleButton input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+#modulesList .send-wizz {
+  background-color: #EEEEEE;
+}
+#modulesList .blagueModuleButton {
+  background-color: #FF838C;
+}
+#modulesList .meteoModuleButton {
+  background-color: #5C9AE0;
+}
+#modulesList .infosClasseModuleButton {
+  background-color: #AC6ED9;
+}
+
+#chat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 75vh;
+  overflow-y: scroll;
+}
+
+#messages {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-y: scroll;
+}
+#messages .is-me {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+#messages .is-me .les-messages {
+  background-color: #0078FF;
+  border-radius: 25px;
+  color: #FFFFFF;
+  min-height: 33px;
+  padding: 10px;
+}
+#messages .is-me .avatar-container {
+  align-self: flex-end;
+  margin-right: 0px;
+  margin-left: 10px;
+  padding-bottom: 12px;
+  height: 33px;
+  width: 33px;
+}
+#messages .is-me .avatar-container img {
+  width: 100%;
+  object-fit: contain;
+}
+#messages .is-me .like-container {
+  width: 20px;
+  height: 20px;
+  align-self: flex-start;
+  margin-top: 15px;
+}
+#messages .les-messages {
+  background-color: #E9E9EB;
+  border-radius: 25px;
+  color: #000000;
+  min-height: 33px;
+  padding: 10px;
+  word-break: break-all;
+}
+#messages .les-messages .message-text img {
+  max-width: 200px !important;
+  border-radius: 20px;
+}
+#messages .les-messages .message-text iframe {
+  width: 100%;
+  border-radius: 20px;
+}
+#messages .user {
+  margin-bottom: 5px;
+  font-size: 10px;
+  margin-left: 15px;
+  color: grey;
+}
+#messages .message {
+  display: flex;
+  position: relative;
+  width: 100%;
+  margin: 5px 0;
+}
+#messages .message-container {
+  max-width: 70%;
+}
+#messages .avatar-container {
+  align-self: flex-end;
+  margin-right: 10px;
+  padding-bottom: 12px;
+  height: 33px;
+  width: 33px;
+}
+#messages .avatar-container img {
+  width: 100%;
+}
+#messages .btn-setting-chat {
+  align-self: flex-end;
+  margin: 0;
+}
+#messages .like-container {
+  align-self: flex-start;
+  margin-top: 15px;
+}
+
+#drawmodule .scribblioInfos {
+  flex-direction: row;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  height: 10vh;
+  max-height: none;
+  min-height: auto;
+  overflow-x: scroll;
+}
+#drawmodule .scribblioInfos > p, #drawmodule .scribblioInfos .playerList {
+  display: none;
+}
+#drawmodule .scribblioInfos #wordToFind {
+  display: block;
+}
+#drawmodule .scribblioInfos.active {
+  top: 15px;
+}
+#drawmodule .scribblioControls.active {
+  bottom: 20px;
+}
+#drawmodule #scribblioContainer.visible {
+  width: 60vw;
+  height: 60vh;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-box-shadow: 0px 0px 20px 0px #000000;
+  box-shadow: 0px 0px 20px 0px #000000;
+}
+
+@media only screen and (min-width: 321px) and (orientation: landscape) {
+  #drawmodule .scribblioInfos {
+    flex-direction: column;
+    top: 50%;
+    right: -100%;
+    transform: translateY(-50%);
+    width: 15vw;
+    max-height: 90vh;
+    min-height: 60vh;
+    overflow-y: scroll;
+    top: 50%;
+    left: auto;
+  }
+  #drawmodule .scribblioInfos > p, #drawmodule .scribblioInfos .playerList {
+    display: block;
+  }
+  #drawmodule .scribblioInfos.active {
+    right: 5vw;
+    top: 50%;
+  }
+  #drawmodule .scribblioControls.active {
+    bottom: 10px;
+  }
+  #drawmodule .scribblioContainer.visible {
+    width: 60vw;
+    height: 60vh;
+  }
+
+  .menu-top {
+    min-height: 60px;
+  }
+  .menu-top .avatarname-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+  .menu-top .avatarname-container img {
+    min-height: 30px;
+    margin-bottom: 0;
+    margin-right: 10px;
+  }
+
+  #chat {
+    height: 70vh;
+  }
+
+  .posabs-bottom {
+    height: 20vh;
+  }
+  .posabs-bottom #message-input-container {
+    height: 25px;
+  }
+  .posabs-bottom #message-input-container #send-message {
+    height: 25px;
+    width: 25px;
+    right: 0;
+    cursor: pointer;
+  }
+  .posabs-bottom #modulesList {
+    justify-content: space-evenly;
+  }
+  .posabs-bottom #modulesList .module {
+    height: 25px;
+    width: 50px;
+  }
+}
+@media only screen and (min-width: 1224px) {
+  #drawmodule .scribblioInfos {
+    flex-direction: column;
+    top: 50%;
+    right: -100%;
+    transform: translateY(-50%);
+    width: 15vw;
+    max-height: 90vh;
+    min-height: 60vh;
+    overflow-y: scroll;
+    top: 50%;
+    left: auto;
+  }
+  #drawmodule .scribblioInfos > p, #drawmodule .scribblioInfos .playerList {
+    display: block;
+  }
+  #drawmodule .scribblioInfos.active {
+    right: 5vw;
+    top: 50%;
+  }
+  #drawmodule .scribblioControls.active {
+    bottom: 10px;
+  }
+  #drawmodule .scribblioContainer.visible {
+    width: 60vw;
+    height: 60vh;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 0 5vw;
+  }
+
+  .bodyWrapper {
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid grey;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  #chat {
+    margin: 0;
+    height: 80vh;
+    width: 100%;
+  }
+
+  .menu-top {
+    position: initial;
+  }
+
+  .posabs-bottom {
+    position: initial;
+    height: 10vh;
+  }
+
+  .posabs-bottom .menu_module .module {
+    width: 8%;
+    height: 70%;
+    cursor: pointer;
+  }
+
+  .posabs-bottom .menu-bottom {
+    display: none;
+  }
+
+  #modulesList.desktop {
+    display: flex;
+    flex-direction: column;
+    width: 15vw;
+    max-height: 80vh;
+    border: 1px solid grey;
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 10px 5px;
+  }
+  #modulesList.desktop .module {
+    width: 5vw;
+    height: 3vw;
+    margin: 20px 0;
+    cursor: pointer;
+  }
+
+  #features {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 15vw;
+    height: 60vh;
+    text-align: center;
+    border: 1px solid grey;
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 10px 5px;
+  }
+  #features h2, #features li {
+    margin: 10px 0;
+  }
+  #features ul {
+    list-style: none;
+  }
+}
+input {
+  outline: none;
+}
+
+.dark {
+  background-color: #000002;
+}
+.dark .menu-top {
+  background-color: #101010;
+  border-bottom: 0px;
+}
+.dark .menu-top #userName {
+  color: white;
+}
+.dark .posabs-bottom {
+  background-color: #000002;
+}
+.dark .posabs-bottom #message-input-container {
+  border: 1px solid #2F2F31;
+  background-color: #1C1C1E;
+}
+.dark .posabs-bottom #message-input {
+  background-color: #1C1C1E;
+  color: #A4A3A6;
+}
+.dark .posabs-bottom .menu-bottom {
+  background-color: #1C1C1E;
+}
+.dark .is-me .les-messages {
+  background-color: #19A3FB !important;
+}
+.dark .is-me .like-button {
+  background-color: #19A3FB !important;
+  border: 3px solid #000002;
+}
+.dark .les-messages {
+  background-color: #26262A !important;
+}
+.dark .les-messages .message-text {
+  color: white;
+}
+.dark .like-button {
+  background-color: #26262A !important;
+  border: 3px solid #000002 !important;
+}
+.dark #features {
+  color: white;
+}
+.dark #modulesList {
+  color: white;
+}
