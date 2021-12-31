@@ -1,5 +1,5 @@
 .aim-game{
-    width: 70%;
+    width: 80%;
     height: 80vh;
     background-color: rgb(29, 29, 29);
     position: absolute;
@@ -15,6 +15,7 @@
     border-radius: 1rem;
 
     padding: 1rem;
+    z-index: 10;
 }
 .aim-game>p {
     color: white;

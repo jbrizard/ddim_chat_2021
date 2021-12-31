@@ -112,3 +112,19 @@
     align-items: center;
     justify-content: center;
 }
+
+@media screen and (max-width: 1350px){
+    #scribblioContainer.visible{
+        width: 80vw;
+        height: 80vh;
+    }
+    .scribblioInfos {
+        max-height: 10vh;
+        width: 80vw;
+        top: 7%;
+    }
+
+    .scribblioInfos.active{
+        right: 10vw;
+    }
+}

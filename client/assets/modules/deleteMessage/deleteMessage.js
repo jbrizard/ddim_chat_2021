@@ -34,23 +34,23 @@ function showPopUp(idMessage)
 
 $('.menuBouton').remove();
 
-$(".btn-setting-chat").prop("disabled",true);
+$(".btn-edit-delete").prop("disabled",true);
 
 // créer la popup
-$('.btn-setting-chat#'+idMessage+'').after(
+$('.btn-edit-delete#'+idMessage+'').after(
     '<span class="menuBouton">'
-
-        //bouton suppression message
-        +'<button class="deleteBouton boutonSetting" onclick="deleteMessage('+idMessage+')" >'
-            + '<i class="far fa-trash-alt"></i>' 
-            + 'supprimer le message'
-        +'</button>'
 
         // bouton modification message
         +'<button class="modifyBouton boutonSetting" onclick="modifyMessage('+idMessage+')">'
             + '<i class="fas fa-edit"></i>' 
-            + 'modifier le message'
+            + 'Modifier'
         +'</button>'
+
+                //bouton suppression message
+                +'<button class="deleteBouton boutonSetting" onclick="deleteMessage('+idMessage+')" >'
+                + '<i class="far fa-trash-alt"></i>' 
+                + 'Supprimer'
+            +'</button>'
 
     +'</span>')
 
@@ -118,7 +118,7 @@ function receiveModifyMessage(data)
  function onClickDocument(evt)
  {
      if (!$(evt.target).is('.menuBouton') && !$(evt.target).closest('.menuBouton').length > 0
-          && $('.menuBouton').length > 0 && !$(evt.target).is('.btn-setting-chat'))
+          && $('.menuBouton').length > 0 && !$(evt.target).is('.btn-edit-delete'))
              closePopUp();
  }
 /**
@@ -128,6 +128,6 @@ function receiveModifyMessage(data)
  {
      $('.menuBouton').remove();
  
-     $(".btn-setting-chat").prop("disabled",false);
+     $(".btn-edit-delete").prop("disabled",false);
  }
  

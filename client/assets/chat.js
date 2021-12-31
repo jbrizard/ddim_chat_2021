@@ -2,13 +2,20 @@
 var socket = io.connect(':8080');
 
 // Défini les sons aléatoires du Wizz
-const audio = new Audio("/modules/wizz/sounds/souffle.mp3");
+// const audio = new Audio("/modules/wizz/sounds/souffle.mp3");
 const audio2 = new Audio("/modules/wizz/sounds/wizz-sound.mp3");
 const audio3 = new Audio("/modules/wizz/sounds/toctoc.mp3");
-const wizzSounds = [audio, audio2, audio3];
+const wizzSounds = [audio2, audio3];
 
 // Défini les variables pour le module répondre à
 var userReplyTo, textReplyTo;
+
+// Défini la variable pour le comportement du menu burger de la liste des participants et des jeux
+var participantMenuShown = false;
+var gameMenuShown = false;
+
+// Défini la variable pour sélectionner l'élément de scroll
+var messageContainer = document.querySelector("#chat-container>main");
 
 // Demande un pseudo et envoie l'info au serveur
 var name = prompt('Quel est votre pseudo ?');
@@ -27,7 +34,7 @@ $('#send-message').click(sendMessage);
 
 // Action quand on clique sur le bouton "Coeur"
 $(document).on('click', '.like-button', likeMessage);
-$(document).on('click', '.btn-answer-to', showUserReplyingTo);
+$(document).on('click', '.btn-reply-to', showUserReplyingTo);
 
 // Action quand on clique sur la reponse
 $(document).on('click', '.hide', displayBlague);
@@ -55,7 +62,7 @@ $(document).on('keyup', '#message-input', function(evt)
 });
 
 // Action quand on clique sur le bouton "Wizz"
-$('#send-wizz').click(sendWizz);
+$('#wizz').click(sendWizz);
 
 /**
  * Envoi d'un message au serveur
@@ -81,8 +88,9 @@ function sendMessage()
 	emptyReplyTo();
 
 	// Réinitialise les valeurs locales du message auquel on répond
-	textReplyTo = '';
-	userReplyTo = '';
+	textReplyTo = null;
+	userReplyTo = null;
+	$("#replyToText").hide();
 }
 
 
@@ -92,51 +100,49 @@ function sendMessage()
 function receiveMessage(data)
 {
 	var btnModifyAndDelete ='';
+	var btnReplyTo = '<input type="button" class="btn-reply-to"></input>';
 	// permet que seule l'envoyer puisse modifier et supprimer son message
 	if(data.isMe){
-         btnModifyAndDelete =  '<button class="btn-setting-chat" id="'+data.messageId+'"  onclick="showPopUp('+data.messageId+')">'
+         btnModifyAndDelete =  '<button class="btn-edit-delete" id="'+data.messageId+'"  onclick="showPopUp('+data.messageId+')">'
         + '<i class="fas fa-ellipsis-v"></i>'
     + '</button>';
+		btnReplyTo = '';
     } 
     
 	// Défini et regarde si on répond à un message ou non
 	var answeredMessage;
 
 	if(data.textReplyTo != null)
-		answeredMessage = '<div class="replied-text">' + data.textReplyTo + '</div>';
+		answeredMessage = '<div class="replied-text">↱ ' + data.textReplyTo + '</div>';
 	else
 		answeredMessage = '';
+
+	var likeButton = '<div class="like-container"><span id="like-count' + data.messageId + '" class="like-count"></span><div class="like-button"><svg aria-hidden="true" focusable="false" id="like-icon" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg></div></div>';
+	if(data.name == "Poll" || data.name == "Daffy!!" || data.name == "Meteo" || data.name ==  "BlagueBot" || data.name ==  "Youtube"){
+		likeButton = '';
+	}
 	
 	//data.message = replaceEmoji(data.message);
-	$('#chat #messages').append(
-		answeredMessage
-		+ 
+	$('#chat-container #messages').append(
 		'<div class="message'+(isTagged ? ' tagged' : '')  + (data.isMe ? ' is-me' : '') + '" data-id="'  + data.messageId + '">'
 				// Affichage de l'avatar
-				+ '<img class="avatar" src="' + data.avatar +'">'
+				+ '<img class="avatar" src="./medias/icon/sbcf-default-avatar.png">'
 				+ '<div class="message-container">'
-				+ '<span class="user">' + data.name  + '</span> ' 
+				+ answeredMessage
+				+ '<span class="user">' + data.name  + ' :</span> ' 
 				+ '<span class="message-text">' + data.message  + '</span>'     
-				+ btnModifyAndDelete
-			+ '</div>'	
-			// Ajout du conteneur de like avec les unique ID
-			+ '<div class="like-container">'
-				+'<span id="like-count' + data.messageId + '" class="like-count"></span>'
-				+'<div class="like-button">'
-					+ '<svg aria-hidden="true" focusable="false" id="like-icon" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>'
-				+'</div>'
-			+ '</div>'
+				// Ajout du conteneur de like avec les unique ID
+			+ likeButton
 			// Ajout du conteneur qui apparait au hover permettant de répondre au message
-			+ (!data.isMe ?
-				'<div id="answer-to">'
-					+'<input type="button" class="btn-answer-to" value="Répondre"></input>'
-				+'</div>'
-				: '')
+			+  btnReplyTo
+			+ btnModifyAndDelete
+			+ '</div>'
 	    + '</div>'
 
 	)
 	
 	.scrollTop(function(){ return this.scrollHeight });  // scrolle en bas du conteneur
+	messageContainer.scrollTo(0,messageContainer.scrollHeight);
 
 	isTagged = false;
 }
@@ -289,8 +295,25 @@ function startCompteur()
 	startTimer();
 
 	// A la fin du temps imparti, le jeu s'arrete
-	setTimeout(() => {
-		endGame();
+	setTimeout(function() {
+		
+		/**
+ 			* Termine le jeu et remet à 0 les compteurs
+		*/
+
+		$('.aim-game').append(
+			'<div class="modal-end"> Votre score est de ' + compteur + 
+			'<button class="fermer-aim-game"> Fermer </button>'
+			+ '<div>'
+		)
+		
+		// Réinitialisation des parametres
+		$('#cible').remove();
+		$('.count').remove();
+		$('.time-code').remove();
+	
+		// Envoi le score au serveur pour broadcast
+		socket.emit('aim-score', compteur);
 	}, 17000);
 }
 
@@ -326,26 +349,6 @@ function addCible()
 }
 
 /**
- * Termine le jeu et remet à 0 les compteurs
-*/
-function endGame()
-{
-	$('.aim-game').append(
-		'<div class="modal-end"> Votre score est de ' + compteur + 
-		'<button class="fermer-aim-game"> Fermer </button>'
-		+ '<div>'
-	)
-	
-	// Réinitialisation des parametres
-	$('#cible').remove();
-	$('.count').remove();
-	$('.time-code').remove();
-
-	// Envoi le score au serveur pour broadcast
-	socket.emit('aim-score', compteur);
-}
-
-/**
  * Quittte la fenetre de jeu
 */
 function removeAimeGame() {
@@ -368,23 +371,121 @@ function showUserReplyingTo()
 	// On retire l'utilisateur du texte afin de garder seulement le message
 	messageReplyTo = textReplyTo.replace(userReplyTo + ' ', '');
 
+	$("#replyToText").show();
+
 	// Appel de la fonction montrant au client à qui il va répondre
 	displayAnsweredMessage(userReplyTo);
 }
 
-$('#toggleNightMode').click(function(){
-	$('body').toggleClass("nightMode");
+// Toggle le mode jour/nuit
+$('#btn-light-dark').click(function()
+{
+	$('body').toggleClass("dark");
 })
 
-$('#listeParticipants').click(function(){
-	$('#participantsContainer').animate({left: '30vw'}, "fast");
+// Affiche en mobile le menu burger "participants"
+$('#btn-participants').click(function()
+{
+	$('#liste-participants-container').animate({left: '30vw'}, "fast", function(){
+		participantMenuShown = true;
+	});
 })
 
+// Affiche en mobile le menu burger "jeux"
+$('#btn-game').click(function()
+{
+	$('#jeux-container').animate({left: '10vw'}, "fast", function(){
+		gameMenuShown = true;
+	});
+})
+
+// Met à jour la liste des utilisateurs connectés
 function updateUserList(userList)
 {
-	$('#participantsContainer').empty();
+	$('#liste-participants-container>main').empty();
 	userList.userList.forEach(element => {
-		$('#participantsContainer').append(
-			'<div class="userElem"><p>' + element + '</div></p>')
+		$('#liste-participants-container>main').append(
+			'<div class="participant">'
+			+ '<img src="./medias/icon/sbcf-default-avatar.png">'
+			+ '<p>' + element + '</p></div>')
 	});
-} 	
+	$('.nb-participants').text(userList.userList.length);
+}
+
+// Affiche la barre d'outils au clic
+$('#btn-toolbar').on('click',  displayToolbar);
+
+function displayToolbar()
+{
+    $('#toolbar').toggle();
+}
+
+// Comportement si le même utilisateur parle plusieurs fois de suite
+$('.message').each(sameUserMessage);
+var previousMessage;
+
+function sameUserMessage()
+{
+    if (previousMessage && previousMessage == $(this).data('id-user'))
+    {
+        $(this).css('margin-top','5px');
+        $(this).children('.message-container').children('.user').hide();
+        if ($(this).prev().attr('class') != 'message isMe')
+            $(this).prev().css('margin-left','40px').children('.avatar').hide();
+    }
+
+    previousMessage = $(this).data('id-user');
+}
+
+// Ferme les menus burger quand on clic en dehors
+$(document).on("click", function(e)
+{
+	if($(e.target).closest("#liste-participants-container").length == 0 && participantMenuShown == true)
+	{
+		$('#liste-participants-container').animate({left: '100vw'}, "fast");
+		participantMenuShown = false;
+	} else if($(e.target).closest("#jeux-container").length == 0 && gameMenuShown == true)
+	{
+			$('#jeux-container').animate({left: '100vw'}, "fast");
+			gameMenuShown = false;
+	};
+  });
+
+// Gère les différents boutons de la barre d'outils
+$("#btn-meteo").click(function()
+{
+	$('#message-input').val("meteo:ville")
+})
+
+$("#btn-poll").click(function()
+{
+	$('#message-input').val("?poll:question")
+})
+
+$("#btn-youtube").click(function()
+{
+	$('#message-input').val("yt:recherche")
+})
+
+$("#btn-blague").click(function()
+{
+	$('#message-input').val(":blague");
+	sendMessage();
+})
+
+$("#btn-daffy").click(function()
+{
+	$('#message-input').val("daffy");
+	sendMessage();
+})
+
+$("#play-game-aim").click(function()
+{
+	displayAimGame();
+})
+
+$("#play-game-draw").click(function()
+{
+	$('#message-input').val("/draw start");
+	sendMessage();
+})

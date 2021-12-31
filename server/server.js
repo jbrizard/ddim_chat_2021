@@ -85,7 +85,7 @@ io.sockets.on('connection', function(socket)
 		scribblio.addClient(socket);
 
 		// Ajoute l'user à la liste des utilisateurs
-		userList.handleUserList(io, name);
+		userList.addToUserList(io, name);
 	});
 
 	// Réception d'un message
@@ -120,7 +120,7 @@ io.sockets.on('connection', function(socket)
 		infosClasse.getStudentsInformations(io, message);
 
 		// Récupère les anciens messages de l'utilisateur
-		messagesHistory.addMessageToHistory(socket, fs, message);
+		// messagesHistory.addMessageToHistory(socket, fs, message);
         
 		// Exécute les commandes du module Scribblio
 		scribblio.scribblioCommands(io, message, socket);
@@ -210,6 +210,12 @@ io.sockets.on('connection', function(socket)
 		// On actualise les résultats
 		io.emit("update", pollAnswer);
 	});
+
+	// Gère la déconnexion
+	socket.on('disconnect', function() {
+			// Ajoute l'user à la liste des utilisateurs
+			userList.removeFromUserList(io, socket.name);
+	 });
 });
 
 // Lance le serveur sur le port 8080 (http://localhost:8080)
